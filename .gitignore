@@ -5,5 +5,4 @@
 
 node_modules/
 
-public/*
-!public/assets/
+public/
