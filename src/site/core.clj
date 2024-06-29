@@ -4,34 +4,12 @@
             [clojure.java.io :as io]
             [babashka.fs :as fs]
             [hiccup2.core :as h]
-            [markdown.core :as md]))
+            [markdown.core :as md]
+            [site.templates :as t]))
 
 (def pub-dir "public")
 
 (def posts-dir "content/posts")
-
-(defn base [body]
-  [:html
-   {:lang "en"}
-   [:head
-    [:meta {:charset "utf-8"}]
-    [:meta {:name    "viewport"
-            :content "width=device-width, initial-scale=1"}] 
-    [:title "Site Title"]]
-   [:body
-
-    [:header
-     "Something"]
-
-    body
-
-    [:div
-     "Something else"]
-    
-    [:footer
-     (str "Copyright © " (.getYear (java.time.LocalDate/now)) " Stef Coetzee")]
-    
-    [:script {:src "assets/js/websocket.js"}]]])
 
 (defn -main [& _args]
   (prn (str "This thing on?"))
@@ -42,7 +20,7 @@
             (h/html {:mode            :html
                      :escape-strings? false}
                     "<!DOCTYPE html>"
-                    (base (md/md-to-html-string (slurp rdr))))))))
+                    (t/base (md/md-to-html-string (slurp rdr))))))))
 
 ;; Render posts
 
@@ -55,7 +33,7 @@
      (h/html {:mode :html
               :escape-strings? false}
              "<!DOCTYPE html>"
-             (base (:html-body post-data))))))
+             (t/base (:html-body post-data))))))
 
 (defn render-posts [posts-data]
   (for [post-data posts-data]
@@ -74,7 +52,7 @@
      (h/html {:mode :html
               :escape-strings? false}
              "<!DOCTYPE html>"
-             (base (:html-body sample-post)))))
+             (t/base (:html-body sample-post)))))
   :rcf)
 
 
