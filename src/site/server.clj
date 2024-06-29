@@ -19,7 +19,7 @@
       "css" "text/css"
       "text/html")))
 
-(defn site [req] 
+(defn site [req]
   (let [uri      (:uri req)
         ext      (fs/extension uri)
         dir?     (fs/directory? (fs/path pub-dir (str/replace-first uri "/" "")))
@@ -36,20 +36,7 @@
        :body    (fs/read-all-bytes resource)}
       {:status  404
        :headers {"Content-Type" "text/plain"}
-       :body    "Not found"}))
-  #_(case (:uri req)
-      "/"
-      (let [body (fs/read-all-bytes (fs/path "public/index.html"))]
-        {:status 200
-         :headers {"Content-Type" "text/html"}
-         :body body})
-      "/assets/js/websocket.js"
-      (let [body (fs/read-all-bytes (fs/path "public/assets/js/websocket.js"))]
-        {:status 200
-         :headers {"Content-Type" "application/javascript"}
-         :body body})
-      {:status 404
-       :body "Not found"}))
+       :body    "Not found"})))
 
 (comment
   (site {:uri "/to-and-sf"})

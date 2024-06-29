@@ -1,6 +1,5 @@
 (ns site.core
-  (:require [clojure.edn :as edn]
-            [clojure.string :as str]
+  (:require [clojure.string :as str]
             [clojure.java.io :as io]
             [babashka.fs :as fs]
             [hiccup2.core :as h]
@@ -25,15 +24,13 @@
 ;; Render posts
 
 (defn render-post [post-data]
-  (let [out-file (fs/file (fs/path (str pub-dir "/"
-                                        (:slug (:metadata post-data))
-                                        ".html")))]
-    (spit
-     out-file
-     (h/html {:mode :html
-              :escape-strings? false}
-             "<!DOCTYPE html>"
-             (t/base (:html-body post-data))))))
+  (let
+   [out-file
+    (fs/file (fs/path (str pub-dir "/" (:slug (:metadata post-data)) ".html")))]
+    (spit out-file (h/html {:mode :html
+                            :escape-strings? false}
+                           "<!DOCTYPE html>"
+                           (t/base (:html-body post-data))))))
 
 (defn render-posts [posts-data]
   (for [post-data posts-data]
@@ -41,20 +38,7 @@
 
 (comment
   (render-posts (parse-posts posts-dir))
-
-  (let [posts-data   (parse-posts posts-dir)
-        sample-post (first posts-data)
-        out-file    (fs/file (fs/path (str pub-dir "/"
-                                           (:slug (:metadata sample-post))
-                                           ".html")))]
-    (spit
-     out-file
-     (h/html {:mode :html
-              :escape-strings? false}
-             "<!DOCTYPE html>"
-             (t/base (:html-body sample-post)))))
   :rcf)
-
 
 (defn parse-post [post]
   (let [post-file            (fs/file post)
@@ -78,28 +62,4 @@
 
 (comment
   (parse-posts "content/posts")
-
-  ;; Parse posts 
-  (->> (fs/list-dir "content/posts")
-       (sort)
-       (map parse-post)
-       (reverse))  
-
-  ;; Parse post
-  (let [post                 (fs/file (first (fs/list-dir "content/posts")))
-        [_ year month day _] (re-matches #"([0-9]{4})-([0-9]{2})-([0-9]{2})-(.*)\.md"
-                                         (fs/file-name post))]
-    (with-open [rdr (io/reader post)]
-      (let [raw-body                (slurp rdr)
-            {:keys [metadata html]} (md/md-to-html-string-with-meta raw-body)]
-        {:metadata (assoc metadata :published (str/join "-" [year month day]))
-         :html-body html})))
-
-  (fs/file (first (fs/list-dir "content/posts")))
-
-  (first (fs/list-dir "content/posts"))
-
-  (re-matches #"([0-9]{4})-([0-9]{2})-([0-9]{2})-(.*)\.md"
-              "2024-06-26-hello-world.md")
-  (fs/file-name (first (fs/list-dir "content/posts")))
   :rcf)
