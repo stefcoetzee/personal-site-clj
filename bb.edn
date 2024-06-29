@@ -1,0 +1,10 @@
+{:paths ["src"]
+
+ :deps  {markdown-clj/markdown-clj {:mvn/version "1.12.1"}}
+ 
+ :tasks {serve {:doc      "Run minimal local server to view site"
+                :requires ([site.server])
+                :task     (site.server/start!)}
+         watch {:doc      "Serve and rebuild on change"
+                :requires ([site.watch])
+                :task     (site.watch/start!)}}}
