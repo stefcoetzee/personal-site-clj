@@ -107,5 +107,7 @@
   (clean pub-dir)
   (copy-assets (str assets-dir "/js")
                (str pub-dir "/assets/js"))
+  (copy-assets (str assets-dir "/css")
+               (str pub-dir "/assets/css"))
   (render-pages)
   (render-posts (parse-posts posts-dir)))

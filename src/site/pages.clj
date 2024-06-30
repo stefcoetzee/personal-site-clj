@@ -1,10 +1,14 @@
 (ns site.pages
-  (:require [site.templates :as t]))
+  (:require [clojure.walk :as w]
+            [clojure.zip :as z]
+            [site.templates :as t]
+            [com.rpl.specter :as s]))
 
 (defn home []
   (t/base
-   [:div
-    [:span "Stef Coetzee"]
+   [:div.border.border-gray-900
+    [:span
+     "Stef Coetzee"]
     (t/nav)]))
 
 (defn blog [posts]
@@ -29,7 +33,5 @@
      at an manufacturer of mining and replenishment-at-sea systems."]))
 
 (comment
-  (into [:div]
-        '([:p "foo"]
-          [:p "bar"]))
+  
   :rcf)
