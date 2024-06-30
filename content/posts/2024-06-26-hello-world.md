@@ -10,9 +10,13 @@ software-defined programmable logic controller (PLC) in Zig.
 
 A PLC is really only a real-time operating system (RTOS).
 
+This is something [^something].
+
 The runtime should stand on its own.
 The overarching goal is to make it amenable to deterministic simulation 
 testing (DST).
 
 In order to speed up time such as is done during DST,
 the notion of time has to be external to the controller.
+
+[^something]: Hey ma! 

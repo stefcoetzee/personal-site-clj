@@ -7,4 +7,5 @@
                 :task     (site.server/start!)}
          watch {:doc      "Serve and rebuild on change"
                 :requires ([site.watch])
-                :task     (site.watch/start!)}}}
+                :task     (do (site.watch/start!)
+                              (deref (promise)))}}}

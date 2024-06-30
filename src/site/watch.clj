@@ -7,17 +7,23 @@
 
 (require '[pod.babashka.fswatcher :as fw])
 
-(defn start! [] 
-  (site.core/-main)
+(defn reload-fn [event]
+  (require 'site.core :reload-all)
+  (site.core/build)
+  (server/restart!)
+  (server/broadcast "reload")
+  (prn event))
+
+(defn start! []
+  (site.core/build)
   (fw/watch "content"
-            (fn [event]
-              (site.core/-main)
-              (server/restart!)
-              (server/broadcast "reload")
-              (prn event))
-            {:delay-ms  200
+            reload-fn
+            {:delay-ms  100
+             :recursive true})
+  (fw/watch "src"
+            reload-fn
+            {:delay-ms  100
              :recursive true})
   (server/start!)
   (server/dev-start!)
-  (println "Watching...")
-  (deref (promise)))
+  (println "Watching..."))
