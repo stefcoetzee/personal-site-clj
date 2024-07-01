@@ -19,4 +19,8 @@ testing (DST).
 In order to speed up time such as is done during DST,
 the notion of time has to be external to the controller.
 
+```clojure
+(defn foo [] "foo")
+```
+
 [^something]: Hey ma! 

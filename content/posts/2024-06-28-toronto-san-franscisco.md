@@ -8,3 +8,8 @@ Until recently I was quite unaware of the tech scene in Toronto.
 
 Studio 535 and other spaces are playing instrumental roles in spreading
 awareness of the local goings on in all things software and internet business.
+
+One thing that seems immediately obvious to me is the degree to which ambition
+is celebrated.
+Most places _tolerate_ ambition.
+The Bay Area appears to *celebrate* it, instead.
