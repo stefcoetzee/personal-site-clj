@@ -30,10 +30,36 @@
 (defn nav []
   [:nav
    (into
-    [:ul]
+    [:ul
+     {:class "flex flex-row"}]
     (let [menu-items ["About" "Now" "Blog" "Bookshelf" "Resume"]]
       (for [menu-item menu-items]
         [:li
+         {:class "w-fit"}
          [:a
           {:href (str "/" (str/lower-case menu-item))}
           menu-item]])))])
+
+(defn site-menu []
+  [:div
+   {:class "flex flex-col border border-gray-900 px-6 pt-4 pb-6 m-2"}
+   [:div 
+    [:a
+     {:class "text-xl font-medium"
+      :href  "/"}
+     "Stef Coetzee"]]
+   [:nav
+    (into
+     [:ul
+      {:class "grid grid-cols-3 text-xl"}]
+     (let [menu-items ["About" "Now" "Blog" "Bookshelf" "Resume"]]
+       (for [menu-item menu-items]
+         [:li
+          {:class "w-fit"}
+          [:a
+           {:href (str "/" (str/lower-case menu-item))}
+           menu-item]])))]])
+
+(comment
+  (site-menu)
+  :rcf)

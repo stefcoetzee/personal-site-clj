@@ -24,14 +24,9 @@
 
 (defn default-page [& content]
   (base
-   [:div
-    [:div
-     [:span
-      "Stef Coetzee"]
-     (com/nav)]
-    
-    (when content
-      content)]))
+   (com/site-menu)
+
+   content))
 
 (defn post [content]
   (base 
@@ -40,9 +35,9 @@
      "The post shall begin shortly."]
 
     content
-    
+
     [:div
      "Thanks for reading!"]
-    
+
     [:footer
      (str "Copyright © " (.getYear (java.time.LocalDate/now)) " Stef Coetzee")]]))

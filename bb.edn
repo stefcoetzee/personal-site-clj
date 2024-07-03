@@ -12,7 +12,8 @@
          -dev      {:depends [dev:tw dev:watch]}
          dev:watch {:doc      "Serve and rebuild on change"
                     :requires ([site.watch])
-                    :task     (do (site.watch/start!) 
+                    :task     (do (site.watch/start!)
                                   (deref (promise)))}
          dev:tw    {:doc "Run Tailwind CSS watcher"
-                    :task (shell "npm run dev")}}}
+                    :task (do (shell "npm run dev"))}}}
+ 

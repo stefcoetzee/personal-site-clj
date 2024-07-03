@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
+          'Lato',
           'ui-sans-serif',
           'system-ui',
           '-apple-system',
@@ -30,7 +31,7 @@ module.exports = {
           'serif'
         ],
         mono: [
-          '"Sometype Mono"',
+          '"Red Hat Mono"',
           'ui-monospace',
           'SFMono-Regular',
           'Menlo',

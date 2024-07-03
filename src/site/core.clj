@@ -65,10 +65,16 @@
   (run! render-page
         [{:slug    "index"
           :content (pages/home)}
+         {:slug    "about"
+          :content (pages/about)}
+         {:slug    "now"
+          :content (pages/now)}
          {:slug    "blog"
           :content (pages/blog (parse-posts posts-dir))}
-         {:slug    "now"
-          :content (pages/now)}]))
+         {:slug "bookshelf"
+          :content (pages/bookshelf)}
+         {:slug "resume"
+          :content (pages/resume)}]))
 
 (defn render-post
   "Render post from provided `post-data`."
