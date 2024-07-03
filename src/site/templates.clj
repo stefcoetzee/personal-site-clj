@@ -14,10 +14,11 @@
      [:link {:rel "stylesheet"
              :href "./assets/css/fonts.css"}]
      [:title "Stef Coetzee"]]
-    [:body
-     {:class "bg-stone-100 text-stone-700 font-serif font-normal text-2xl"}
+    [:body 
+     [:div
+      {:class "bg-stone-100 text-stone-700 min-h-screen font-serif font-normal text-xl"}
 
-     :children
+      :children]
 
      [:script {:src "./assets/js/websocket.js"}]]]
    children))
@@ -26,7 +27,9 @@
   (base
    (com/site-menu)
 
-   content))
+   [:div
+   {:class "mt-3 px-3"} 
+    content]))
 
 (defn post [content]
   (base 

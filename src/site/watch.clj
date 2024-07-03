@@ -11,11 +11,11 @@
 (defn reload-namespaces [dir]
   (let [clj-files (fs/glob dir "**.clj")]
     (doseq [file clj-files]
-      (let [ns-name (->> file 
-                        (fs/file-name) 
-                        (fs/strip-ext) 
-                        (str "site.") 
-                        (symbol))]
+      (let [ns-name (->> file
+                         (fs/file-name)
+                         (fs/strip-ext)
+                         (str "site.")
+                         (symbol))]
         (println "Reloading namespace:" ns-name)
         (require ns-name :reload)))))
 
@@ -29,11 +29,12 @@
 
 (defn reload-fn [event]
   #_(require 'site.core :reload-all)
-  (reload-namespaces "src/site")
-  (site.core/build)
-  (server/restart!)
-  (server/broadcast "reload")
-  (prn event))
+  (do
+    (reload-namespaces "src/site")
+    (site.core/build)
+    (server/restart!)
+    (server/broadcast "reload")
+    (prn event)))
 
 (defn start! []
   (site.core/build)

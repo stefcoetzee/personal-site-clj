@@ -42,7 +42,7 @@
 
 (defn site-menu []
   [:div
-   {:class "flex flex-col border border-gray-900 px-6 pt-4 pb-6 m-2"}
+   {:class "flex flex-col space-y-1 border border-gray-900 px-4 pt-2 pb-4 m-2"}
    [:div 
     [:a
      {:class "text-xl font-medium"
@@ -51,7 +51,7 @@
    [:nav
     (into
      [:ul
-      {:class "grid grid-cols-3 text-xl"}]
+      {:class "grid grid-cols-3 gap-1 text-xl"}]
      (let [menu-items ["About" "Now" "Blog" "Bookshelf" "Resume"]]
        (for [menu-item menu-items]
          [:li
