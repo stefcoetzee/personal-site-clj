@@ -28,7 +28,6 @@
   :rcf)
 
 (defn reload-fn [event]
-  #_(require 'site.core :reload-all)
   (do
     (reload-namespaces "src/site")
     (site.core/build)
@@ -40,11 +39,11 @@
   (site.core/build)
   (fw/watch "content"
             reload-fn
-            {:delay-ms  200
+            {:delay-ms  100
              :recursive true})
   (fw/watch "src"
             reload-fn
-            {:delay-ms  200
+            {:delay-ms  100
              :recursive true})
   (server/start!)
   (server/dev-start!)

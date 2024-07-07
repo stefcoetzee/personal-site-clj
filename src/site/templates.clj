@@ -32,15 +32,14 @@
     content]))
 
 (defn post [content]
-  (base 
+  (default-page
+   
+   [:article
+    {:class "pt-4 prose-xl prose-h1:text-3xl prose-h2:text-2xl 
+             prose-headings:font-medium"}
+    content]
+
    [:div
-    [:div
-     "The post shall begin shortly."]
-
-    content
-
-    [:div
-     "Thanks for reading!"]
-
-    [:footer
-     (str "Copyright © " (.getYear (java.time.LocalDate/now)) " Stef Coetzee")]]))
+    "Thanks for reading!"]
+   [:footer
+    (str "Copyright © " (.getYear (java.time.LocalDate/now)) " Stef Coetzee")]))

@@ -1,5 +1,6 @@
 (ns site.pages
   (:require [clojure.string :as str]
+            [site.components :as c]
             [site.templates :as t]))
 
 (defn home []
@@ -23,39 +24,13 @@
          (for [menu-item menu-items]
            [:li
             {:class "w-fit"}
-            [:a
-             {:href (str "/" (str/lower-case menu-item))}
-             menu-item]])))]]]))
-
-(defn blog [posts]
-  (t/default-page
-   [:div
-    #_[:h1
-       {:class "font-medium text-2xl"}
-       "Posts"]
-    [:div
-     {:class "flex flex-col space-y-4 mt-4"}
-     (for [post posts]
-       (let [metadata (:metadata post)]
-         [:div
-          {:class "flex flex-col space-y-0"}
-          [:div
-           {:class "font-medium"}
-           [:a
-            {:href (str "/" (:slug metadata))}
-            (:title metadata)]]
-          [:div
-           {:class "text-stone-400 font-sans text-base"}
-           (:published metadata)]
-          (when (contains? metadata :description)
-            [:div
-             (:description metadata)])]))]]))
+            (c/link (str "/" (str/lower-case menu-item))
+                    menu-item)])))]]]))
 
 (defn about []
   (t/default-page
-      
    [:div
-    {:class "flex flex-col space-y-2"}
+    {:class "flex flex-col space-y-3"}
     [:p 
      "Hi, I’m Stef."]
     
@@ -65,67 +40,85 @@
     
     [:p
      "Email: "
-     [:a
-      {:class "font-sans text-base"}
-      "stef@stefcoetzee.com"]]
+     (c/link "mailto:stef@stefcoetzee.com"
+             [:span {:class "font-sans text-base"} "stef@stefcoetzee.com"])]
     
     [:p
      "I grew up in South Africa and studied electrical and electronic 
       engineering at Stellenbosch University."]
     
-    [:p 
+    [:p
      "Learn more about what I’m doing "
-     [:a
-      {:class "italic"
-       :href "/now"}
-      "now"]
+     (c/link "/now" "now")
      "."]
     
     [:p
-     {:class "mt-2"}
-     [:p
+     [:span
       "Elsewhere:"
       [:ul
-       {:class "list-disc list-outside ml-5"}
+       {:class "list-disc list-outside ml-5 marker:text-stone-400"}
        [:li
-        [:a
-         {:class "font-sans text-base"
-          :href "https://github.com/stefcoetzee"}
-         "stefcoetzee"]
+        (c/link "https://github.com/stefcoetzee"
+                [:span
+                 {:class "font-sans text-base"}
+                 "stefcoetzee"])
         " on GitHub;"]
        [:li
-        [:a
-         {:class "font-sans text-base"
-          :href "https://x.com/stef_coetzee"}
-         "stef_coetzee"]
-        " on X."]]]]
+        (c/link "https://x.com/stef_coetzee"
+                [:span
+                 {:class "font-sans text-base"}
+                 "stef_coetzee"])
+        " on X;"]
+       [:li
+        (c/link "https://www.linkedin.com/in/stefcoetzee/"
+                "LinkedIn")
+        "."]]]]
     
     [:p
      "If, like me, you enjoy discovering books by seeing what others have read, 
       take a look at my "
-     [:a
-      {:class "italic"
-       :href "/bookshelf"}
-      "bookshelf"]
+     (c/link "/bookshelf" "bookshelf") 
      ". I write infrequently and post on my "
-      [:a
-       {:class "italic"
-        :href "/blog"}
-       "blog"]
+      (c/link "/blog" "blog")
       " even less often."]]
    
    ))
 
-(comment
-  (about)
-  :rcf)
-
 (defn now []
   (t/default-page 
-   [:div 
-    "I work in the fields of industrial automation and electrical engineering 
-     at an manufacturer of mining—most notably mine hoists—and 
-     replenishment-at-sea systems."]))
+   [:div
+    {:class "flex flex-col space-y-2"}
+    [:p
+     "Location: Toronto, Canada "]
+
+    [:p
+     "I’m employed by a manufacturer of mining—most notably mine hoists—and 
+      replenishment-at-sea systems.
+      The scope of my work spans the fields of industrial automation and electrical
+      engineering."]]))
+
+(defn blog [posts]
+  (t/default-page
+   [:div
+    [:div
+     {:class "flex flex-col space-y-4 mt-4"}
+     (for [post posts]
+       (let [metadata (:metadata post)]
+         [:div
+          {:class "flex flex-col space-y-0"}
+          [:div
+           {:class "font-medium"}
+           [:a
+            {:class "font-medium"
+             :href (str "/" (:slug metadata))}
+            (:title metadata)]]
+          [:div
+           {:class "text-stone-400 font-mono font-light text-sm"}
+           (:published metadata)]
+          (when (contains? metadata :description)
+            [:div
+             {:class ""}
+             (:description metadata)])]))]]))
 
 (defn bookshelf []
   (t/default-page
@@ -148,7 +141,3 @@
      [:a
       {:href "mailto:stef@stefcotzee.com"}
       "stef@stefcoetzee.com"]]]))
-
-(comment
-  (resume)
-  :rcf)

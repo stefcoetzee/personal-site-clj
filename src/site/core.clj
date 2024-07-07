@@ -17,6 +17,30 @@
 
 (def assets-dir "content/assets")
 
+(defn anchorize-headers [html-str]
+  (let [hiccup-seq       (bl/html->hiccup-seq html-str)
+        header-anchor-fn (fn [hiccup-el]
+                           (if (re-find #"^:h"
+                                        (str (first hiccup-el)))
+                             (let [el-meta (second hiccup-el)
+                                   el-link (str "#" (:id el-meta))]
+                               [(first hiccup-el) el-meta
+                                [:span {:class "group"}
+                                 [:a {:href el-link}
+                                  (drop 2 hiccup-el)]
+                                 " "
+                                 [:a {:class "hidden group-hover:inline 
+                                           text-stone-400"
+                                      :href  el-link}
+                                  "§"]]])
+                             hiccup-el))]
+    (map header-anchor-fn
+         hiccup-seq)))
+
+(comment
+  (anchorize-headers (:html-body (first (parse-posts "content/posts"))))
+  :rcf)
+
 (defn parse-post 
   "Return post data, parsed from file at `post-path`."
   [post-path]
@@ -33,7 +57,7 @@
         {:metadata  (assoc (into {} (for [[k v] metadata]
                                       [k (first v)]))
                            :published (str/join "-" [year month day]))
-         :html-body html}))))
+         :html-body (anchorize-headers html)}))))
 
 (defn parse-posts 
   "Return post data, parsed from files in `dir`."
@@ -43,13 +67,6 @@
        (map parse-post)
        (reverse)
        (into [])))
-
-(comment 
-  (map :metadata (parse-posts posts-dir))
-
-  (bl/hiccup-seq->html
-   (bl/html->hiccup-seq (:html-body (first (parse-posts "content/posts")))))
-  :rcf)
 
 ;; Render
 
@@ -71,9 +88,9 @@
           :content (pages/now)}
          {:slug    "blog"
           :content (pages/blog (parse-posts posts-dir))}
-         {:slug "bookshelf"
+         {:slug    "bookshelf"
           :content (pages/bookshelf)}
-         {:slug "resume"
+         {:slug    "resume"
           :content (pages/resume)}]))
 
 (defn render-post

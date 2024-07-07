@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
+          '"Open Sans"',
           'Lato',
           'ui-sans-serif',
           'system-ui',
@@ -31,7 +32,7 @@ module.exports = {
           'serif'
         ],
         mono: [
-          '"Red Hat Mono"',
+          '"Roboto Mono"',
           'ui-monospace',
           'SFMono-Regular',
           'Menlo',
@@ -53,6 +54,8 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
 

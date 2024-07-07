@@ -21,24 +21,25 @@
         parent-vec   (get-in component (butlast idx-route))
         local-before (subvec parent-vec 0 (last idx-route))
         local-after  (subvec parent-vec (+ 1 (last idx-route)))]
-    (assoc-in component
+    (if (> (count idx-route) 1)
+     (assoc-in component
               (butlast idx-route)
               (vec (concat local-before
                            (if (seq? children) (into [] children) [children])
-                           local-after)))))
+                           local-after)))
+      (vec (concat local-before
+                   (if (seq? children) (into [] children) [children])
+                   local-after)))))
 
-(defn nav []
-  [:nav
-   (into
-    [:ul
-     {:class "flex flex-row"}]
-    (let [menu-items ["About" "Now" "Blog" "Bookshelf" "Resume"]]
-      (for [menu-item menu-items]
-        [:li
-         {:class "w-fit"}
-         [:a
-          {:href (str "/" (str/lower-case menu-item))}
-          menu-item]])))])
+(defn link [href children]
+  (insert-children
+   [:a
+    {:class "hover:text-orange-600 transition duration-200 ease-in-out 
+             underline decoration-2 decoration-orange-500/30 
+             underline-offset-4"
+     :href href}
+    :children]
+   children))
 
 (defn site-menu []
   [:div
@@ -56,10 +57,5 @@
        (for [menu-item menu-items]
          [:li
           {:class "w-fit"}
-          [:a
-           {:href (str "/" (str/lower-case menu-item))}
-           menu-item]])))]])
-
-(comment
-  (site-menu)
-  :rcf)
+          (link (str "/" (str/lower-case menu-item))
+                menu-item)])))]])
