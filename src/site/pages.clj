@@ -31,27 +31,27 @@
   (t/default-page
    [:div
     {:class "flex flex-col space-y-3"}
-    [:p 
+    [:p
      "Hi, I’m Stef."]
-    
-    [:p 
+
+    [:p
      "I see industrial progress acceleration as the central focus of my 
       professional life."]
-    
+
     [:p
      "Email: "
      (c/link "mailto:stef@stefcoetzee.com"
              [:span {:class "font-sans text-base"} "stef@stefcoetzee.com"])]
-    
+
     [:p
      "I grew up in South Africa and studied electrical and electronic 
       engineering at Stellenbosch University."]
-    
+
     [:p
      "Learn more about what I’m doing "
      (c/link "/now" "now")
      "."]
-    
+
     [:p
      [:span
       "Elsewhere:"
@@ -73,29 +73,25 @@
         (c/link "https://www.linkedin.com/in/stefcoetzee/"
                 "LinkedIn")
         "."]]]]
-    
+
     [:p
      "If, like me, you enjoy discovering books by seeing what others have read, 
       take a look at my "
-     (c/link "/bookshelf" "bookshelf") 
+     (c/link "/bookshelf" "bookshelf")
      ". I write infrequently and post on my "
-      (c/link "/blog" "blog")
-      " even less often."]]
-   
-   ))
+     (c/link "/blog" "blog")
+     " even less often."]]))
 
 (defn now []
-  (t/default-page 
+  (t/default-page
    [:div
     {:class "flex flex-col space-y-3"}
     [:p
-     "Location: Toronto, Canada "]
+     "Location: Toronto, Canada 🍁"]
 
     [:p
-     "I’m employed by a manufacturer of mining—most notably mine hoists—and 
-      replenishment-at-sea systems.
-      The scope of my work straddles the fields of industrial automation and electrical
-      engineering."]]))
+     "My day-to-day work entails a blend of industrial automation and electrical engineering,
+      applied to the domain of mine-hoist control systems."]]))
 
 (defn blog [posts]
   (t/default-page
@@ -126,7 +122,6 @@
     "A good book gets better on the second reading. 
      A great book on the third. 
      Any book not worth rereading isn’t worth reading."]))
-
 
 (defn resume []
   (t/default-page

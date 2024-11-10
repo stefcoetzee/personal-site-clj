@@ -3,7 +3,7 @@
 Start static-site and development servers:
 
 ```bash
-bb watch
+bb dev
 ```
 
 Start Tailwind CSS watch process:
