@@ -16,10 +16,10 @@
      [:title "Stef Coetzee"]]
     [:body 
      [:div
-      {:class "bg-stone-100 text-stone-700 min-h-screen font-serif font-normal text-xl"}
+      {:class "bg-stone-100 text-stone-700 min-h-screen font-serif 
+               font-normal text-xl flex flex-col"}
 
-      :children]
-
+      :children] 
      [:script {:src "./assets/js/websocket.js"}]]]
    children))
 
@@ -28,8 +28,14 @@
    (com/site-menu)
 
    [:div
-   {:class "mt-3 px-3"} 
-    content]))
+    {:class "mt-3 px-3 grow"}
+    content]
+   
+   [:footer
+    {:class "pt-4 pb-8 px-4 flex-none"}
+    [:span
+    {:class "flex flex-row justify-center"} 
+     "Have a great day, eh!"]]))
 
 (defn post [content]
   (default-page

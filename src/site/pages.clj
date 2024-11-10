@@ -87,14 +87,14 @@
 (defn now []
   (t/default-page 
    [:div
-    {:class "flex flex-col space-y-2"}
+    {:class "flex flex-col space-y-3"}
     [:p
      "Location: Toronto, Canada "]
 
     [:p
      "I’m employed by a manufacturer of mining—most notably mine hoists—and 
       replenishment-at-sea systems.
-      The scope of my work spans the fields of industrial automation and electrical
+      The scope of my work straddles the fields of industrial automation and electrical
       engineering."]]))
 
 (defn blog [posts]
