@@ -6,17 +6,17 @@ module.exports = {
       fontFamily: {
         sans: [
           '"Open Sans"',
-          'Lato',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'BlinkMacSystemFont',
+          "Lato",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
           '"Segoe UI"',
-          'Roboto',
+          "Roboto",
           '"Helvetica Neue"',
-          'Arial',
+          "Arial",
           '"Noto Sans"',
-          'sans-serif',
+          "sans-serif",
           '"Apple Color Emoji"',
           '"Segoe UI Emoji"',
           '"Segoe UI Symbol"',
@@ -24,38 +24,47 @@ module.exports = {
         ],
         serif: [
           '"EB Garamond"',
-          'ui-serif',
-          'Georgia',
-          'Cambria',
+          "ui-serif",
+          "Georgia",
+          "Cambria",
           '"Times New Roman"',
-          'Times',
-          'serif'
+          "Times",
+          "serif",
         ],
         mono: [
           '"Roboto Mono"',
-          'ui-monospace',
-          'SFMono-Regular',
-          'Menlo',
-          'Monaco',
-          'Consolas',
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
           '"Liberation Mono"',
           '"Courier New"',
-          'monospace',
+          "monospace",
         ],
         heading: [
           '"Source Serif Pro"',
-          'ui-serif',
-          'Georgia',
-          'Cambria',
+          "ui-serif",
+          "Georgia",
+          "Cambria",
           '"Times New Roman"',
-          'Times',
-          'serif'
+          "Times",
+          "serif",
         ],
-      }
+      },
+      typography: {
+        xl: {
+          css: {
+            code: {
+              fontSize: "0.875rem !important", // more aggressive reduction
+            },
+            pre: {
+              fontSize: "0.875rem !important", // also reduce code block size
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-}
-
+  plugins: [require("@tailwindcss/typography")],
+};

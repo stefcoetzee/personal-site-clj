@@ -1,19 +1,26 @@
 {:paths ["src"]
 
  :deps  {markdown-clj/markdown-clj {:mvn/version "1.12.1"}
-         com.rpl/specter           {:mvn/version "1.1.4"}}
- 
- :tasks {serve     {:doc      "Run minimal local server to view site"
-                    :requires ([site.server])
-                    :task     (site.server/start!)}
-         dev       {:doc  "Run in dev mode: 
-                      site generation and Tailwind CSS watch"
-                    :task (run '-dev {:parallel true})}
-         -dev      {:depends [dev:tw dev:watch]}
-         dev:watch {:doc      "Serve and rebuild on change"
-                    :requires ([site.watch])
-                    :task     (do (site.watch/start!)
-                                  (deref (promise)))}
-         dev:tw    {:doc "Run Tailwind CSS watcher"
-                    :task (do (shell "npm run dev"))}}}
+         com.rpl/specter           {:mvn/version "1.1.4"}
+         org.clj-commons/pretty    {:mvn/version "3.2.0"}}
+
+ :tasks {serve      {:doc      "Run minimal local server to view site"
+                     :requires ([site.server])
+                     :task     (site.server/start!)}
+         dev        {:doc  "Run in dev mode: site generation and Tailwind CSS watch"
+                     :task (run '-dev {:parallel true})}
+         -dev       {:depends [dev:tw dev:watch]}
+         dev:watch  {:doc      "Serve and rebuild on change"
+                     :requires ([site.watch])
+                     :task     (do (site.watch/start!)
+                                   (deref (promise)))}
+         dev:watch2 {:doc      "Serve and rebuild on change"
+                     :requires ([site.watch])
+                     :task     (do (site.watch/start2!)
+                                   (deref (promise)))}
+         dev:tw     {:doc  "Run Tailwind CSS watcher"
+                     :task (do (shell "npm run dev"))}
+         build:site {:doc      "Generate static site"
+                     :requires ([site.core])
+                     :task     (site.core/build!)}}}
  

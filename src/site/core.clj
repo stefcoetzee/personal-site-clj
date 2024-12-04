@@ -2,6 +2,7 @@
   (:require [clojure.string :as str]
             [clojure.java.io :as io]
             [babashka.fs :as fs]
+            [babashka.tasks :refer [shell]]
             [hiccup2.core :as h]
             [markdown.core :as md]
             [site.templates :as t]
@@ -37,11 +38,7 @@
     (map header-anchor-fn
          hiccup-seq)))
 
-(comment
-  (anchorize-headers (:html-body (first (parse-posts "content/posts"))))
-  :rcf)
-
-(defn parse-post 
+(defn parse-post
   "Return post data, parsed from file at `post-path`."
   [post-path]
   (let [post-file            (fs/file post-path)
@@ -53,13 +50,14 @@
             {:keys [metadata html]} (md/md-to-html-string-with-meta
                                      raw-body
                                      :heading-anchors true
-                                     :footnotes? true)]
+                                     :footnotes? true
+                                     :code-style #(str "class=\"language-" % "\""))]
         {:metadata  (assoc (into {} (for [[k v] metadata]
                                       [k (first v)]))
                            :published (str/join "-" [year month day]))
          :html-body (anchorize-headers html)}))))
 
-(defn parse-posts 
+(defn parse-posts
   "Return post data, parsed from files in `dir`."
   [dir]
   (->> (fs/list-dir dir)
@@ -89,7 +87,7 @@
          {:slug    "blog"
           :content (pages/blog (parse-posts posts-dir))}
          {:slug    "bookshelf"
-          :content (pages/bookshelf)}
+          :content (pages/bookshelf pages/books)}
          {:slug    "resume"
           :content (pages/resume)}]))
 
@@ -105,14 +103,14 @@
                            "<!DOCTYPE html>"
                            (t/post (:html-body post-data))))))
 
-(defn render-posts 
+(defn render-posts
   "Render posts from provided `posts-data`."
   [posts-data]
   (run! (fn [post-data] (render-post post-data)) posts-data))
 
 ;; Static assets
 
-(defn copy-assets 
+(defn copy-assets
   "Copy assets in `src` directory to `dest` directory."
   [src dest]
   (fs/copy-tree src
@@ -121,15 +119,25 @@
 
 ;; Showtime!
 
-(defn clean
+(defn clean!
   "Remove `dir`."
   [dir]
   (fs/delete-tree dir))
 
-(defn build [& _args]
-  (clean pub-dir)
+(defn build! [& _args]
+  (clean! pub-dir)
   (copy-assets (str assets-dir "/js")
                (str pub-dir "/assets/js"))
+  (copy-assets (str assets-dir "/css")
+               (str pub-dir "/assets/css"))
+  (render-pages)
+  (render-posts (parse-posts posts-dir)))
+
+(defn build2! [& _args]
+  (clean! pub-dir)
+  (copy-assets (str assets-dir "/js")
+               (str pub-dir "/assets/js"))
+  (shell "npx tailwindcss -i ./src/css/tailwind.css -o ./content/assets/css/main.css")
   (copy-assets (str assets-dir "/css")
                (str pub-dir "/assets/css"))
   (render-pages)

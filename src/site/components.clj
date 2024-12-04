@@ -22,11 +22,11 @@
         local-before (subvec parent-vec 0 (last idx-route))
         local-after  (subvec parent-vec (+ 1 (last idx-route)))]
     (if (> (count idx-route) 1)
-     (assoc-in component
-              (butlast idx-route)
-              (vec (concat local-before
-                           (if (seq? children) (into [] children) [children])
-                           local-after)))
+      (assoc-in component
+                (butlast idx-route)
+                (vec (concat local-before
+                             (if (seq? children) (into [] children) [children])
+                             local-after)))
       (vec (concat local-before
                    (if (seq? children) (into [] children) [children])
                    local-after)))))
@@ -44,7 +44,7 @@
 (defn site-menu []
   [:div
    {:class "flex flex-col space-y-1 border border-gray-900 px-4 pt-2 pb-4 m-2"}
-   [:div 
+   [:div
     [:a
      {:class "text-xl font-medium"
       :href  "/"}
@@ -59,3 +59,29 @@
           {:class "w-fit"}
           (link (str "/" (str/lower-case menu-item))
                 menu-item)])))]])
+
+(defn last-updated [date-str]
+  (let [date      (java.time.LocalDate/parse date-str)
+        formatter (java.time.format.DateTimeFormatter/ofPattern "MMMM")
+        month     (.format date formatter)]
+    (str "Updated: "
+         (.getDayOfMonth date) " "
+         month " "
+         (.getYear date))))
+
+(defn last-updated-month
+  "Last-updated date formatted up to the month.
+   
+   E.g. \"Updated: December 2024\" for \"2024-12-04\"."
+  [date-str]
+  (let [date      (java.time.LocalDate/parse date-str)
+        formatter (java.time.format.DateTimeFormatter/ofPattern "MMMM")
+        month     (.format date formatter)]
+    (str "Updated: "
+         month " "
+         (.getYear date))))
+
+(comment
+  (last-updated-month "2024-12-04")
+  (last-updated "2024-12-04")
+  :rcf)
