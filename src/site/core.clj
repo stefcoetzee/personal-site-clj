@@ -91,6 +91,10 @@
          {:slug    "resume"
           :content (pages/resume)}]))
 
+(comment
+  (mapv :metadata (parse-posts posts-dir))
+  :rcf)
+
 (defn render-post
   "Render post from provided `post-data`."
   [post-data]

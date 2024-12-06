@@ -5,8 +5,9 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
-          '"Open Sans"',
           "Lato",
+          '"Libre Franklin"',
+          '"Open Sans"',
           "ui-sans-serif",
           "system-ui",
           "-apple-system",

@@ -60,6 +60,14 @@
           (link (str "/" (str/lower-case menu-item))
                 menu-item)])))]])
 
+(defn format-date
+  "Format date string `date-str` to \"Day Month Year\"."
+  [date-str]
+  (let [date      (java.time.LocalDate/parse date-str)
+        formatter (java.time.format.DateTimeFormatter/ofPattern "MMMM")
+        month     (.format date formatter)]
+    (str (.getDayOfMonth date) " " month " " (.getYear date))))
+
 (defn last-updated [date-str]
   (let [date      (java.time.LocalDate/parse date-str)
         formatter (java.time.format.DateTimeFormatter/ofPattern "MMMM")

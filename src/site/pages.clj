@@ -83,7 +83,15 @@
      (c/link "/bookshelf" "bookshelf")
      ". I write infrequently and post on my "
      (c/link "/blog" "blog")
-     " even less often."]]))
+     " even less often."]
+
+    [:div
+     "This site is made with "
+     (c/link "https://babashka.org/" "Babashka")
+     ", a fast native Clojure scripting runtime. "
+     "Site styling is done via "
+     (c/link "https://tailwindcss.com/" "Tailwind CSS")
+     "."]]))
 
 (defn now []
   (t/default-page
@@ -118,24 +126,26 @@
    {:page-title "Blog"}
    [:div
     [:div
-     {:class "flex flex-col space-y-4 mt-4"}
+     {:class "flex flex-col space-y-8"}
      (for [post posts]
        (let [metadata (:metadata post)]
-         [:div
-          {:class "flex flex-col space-y-0"}
-          [:div
-           {:class "font-medium"}
-           [:a
-            {:class "font-medium"
-             :href (str "/" (:slug metadata))}
+         [:div {:class "flex flex-col space-y-2 bg-stone-50 px-8 py-8 
+                        transition duration-300 ease-in-out transform 
+                        hover:-translate-y-1 hover:scale-105"}
+          [:div {:class "font-medium"}
+           [:a {:href (str "/" (:slug metadata))}
             (:title metadata)]]
-          [:div
-           {:class "text-stone-400 font-mono text-sm"}
-           (:published metadata)]
           (when (contains? metadata :description)
             [:div
-             {:class ""}
-             (:description metadata)])]))]]))
+             (:description metadata)])
+          [:div {:class "text-stone-400 text-sm font-sans font-medium
+                         tracking-wide uppercase"}
+           (c/format-date (:published metadata))]]))]]))
+(comment
+  "px-8 py-8 md:py-10 bg-opacity-90 transition duration-300 ease-in-out 
+   transform hover:-translate-y-1 hover:scale-105
+   mt-4 bg-cyan-300"
+  :rcf)
 
 (def books
   [{:title "The Well-Grounded Rubyist"
@@ -290,7 +300,7 @@
 
       [:p
        "Software tools and technologies used: 
-        Python, MySQL, JavaScript with React, Google Cloud Platform, Git."]]]
+        Python (leveraging packages such as FastAPI, Polars, etc.), MySQL, JavaScript with React, Google Cloud Platform, Git."]]]
 
     [:div {:class "flex flex-col space-y-3"}
      [:h3 {:class "font-bold text-xl"}
@@ -402,7 +412,7 @@
      [:div {:class "flex flex-col space-y-3"}
       [:p
        "Awarded an Innovation Scholarship by South Africa’s National Research 
-        Foundation to research the use of model predictive control to reduce a 
+        Foundation for research into the use of model predictive control to reduce a 
         given residence’s dependency on the national electrical grid."]
 
       [:p
