@@ -39,7 +39,7 @@
                            (cons {} args))]
     (base
      opts
-     (com/site-menu)
+     (com/site-menu (:current-page opts))
 
      [:div
       {:class "mt-3 px-4 sm:px-8 md:px-12 lg:mx-auto lg:px-0 lg:max-w-2xl grow"}

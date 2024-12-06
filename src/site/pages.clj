@@ -31,7 +31,9 @@
 
 (defn about []
   (t/default-page
-   {:page-title "About"}
+   {:page-title "About"
+    :current-page "about"}
+
    [:div
     {:class "flex flex-col space-y-3"}
     [:p
@@ -95,7 +97,8 @@
 
 (defn now []
   (t/default-page
-   {:page-title "Now"}
+   {:page-title "Now"
+    :current-page "now"}
    [:div
     {:class "flex flex-col space-y-3"}
     [:p
@@ -123,7 +126,8 @@
 
 (defn blog [posts]
   (t/default-page
-   {:page-title "Blog"}
+   {:page-title "Blog"
+    :current-page "blog"}
    [:div
     [:div
      {:class "flex flex-col space-y-8"}
@@ -185,7 +189,8 @@
 
 (defn bookshelf [books]
   (t/default-page
-   {:page-title "Bookshelf"}
+   {:page-title "Bookshelf"
+    :current-page "bookshelf"}
 
    [:blockquote {:class "my-5 flex flex-col bg-stone-50 px-6 py-4 border-l-4 border-orange-500/30"}
     [:span {:class "italic"}
@@ -230,7 +235,9 @@
 
 (defn resume []
   (t/default-page
-   {:page-title "Resume"}
+   {:page-title "Resume"
+    :current-page "resume"}
+
    [:div {:class "flex flex-col space-y-3"}
     [:h1
      {:class "font-bold text-5xl"}

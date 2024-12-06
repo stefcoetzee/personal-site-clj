@@ -31,17 +31,18 @@
                    (if (seq? children) (into [] children) [children])
                    local-after)))))
 
-(defn link [href children]
+(defn link [href children & [{:keys [ext-class]}]]
   (insert-children
    [:a
-    {:class "hover:text-orange-600 transition duration-200 ease-in-out 
-             underline decoration-2 decoration-orange-500/30 
-             underline-offset-4"
+    {:class (str "hover:text-orange-600 transition duration-200 ease-in-out 
+                  underline decoration-2 decoration-orange-500/30 
+                  underline-offset-4 "
+                 ext-class)
      :href href}
     :children]
    children))
 
-(defn site-menu []
+(defn site-menu [current-page]
   [:div
    {:class "flex flex-col space-y-1 border border-gray-900 px-4 pt-2 pb-4 m-2"}
    [:div
@@ -58,7 +59,9 @@
          [:li
           {:class "w-fit"}
           (link (str "/" (str/lower-case menu-item))
-                menu-item)])))]])
+                menu-item
+                (when (= (str/lower-case menu-item) current-page)
+                  {:ext-class "text-orange-600"}))])))]])
 
 (defn format-date
   "Format date string `date-str` to \"Day Month Year\"."
