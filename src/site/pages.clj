@@ -133,7 +133,7 @@
      {:class "flex flex-col space-y-8"}
      (for [post posts]
        (let [metadata (:metadata post)]
-         [:div {:class "flex flex-col space-y-2 bg-stone-50 px-8 py-8 
+         [:div {:class "flex flex-col space-y-2 px-4 pt-4 pb-8 border border-gray-900 
                         transition duration-300 ease-in-out transform 
                         hover:-translate-y-1 hover:scale-105"}
           [:div {:class "font-medium"}
@@ -145,11 +145,8 @@
           [:div {:class "text-stone-400 text-sm font-sans font-medium
                          tracking-wide uppercase"}
            (c/format-date (:published metadata))]]))]]))
-(comment
-  "px-8 py-8 md:py-10 bg-opacity-90 transition duration-300 ease-in-out 
-   transform hover:-translate-y-1 hover:scale-105
-   mt-4 bg-cyan-300"
-  :rcf)
+
+;; Next: consider styling post titles similar to site menu links.
 
 (def books
   [{:title "The Well-Grounded Rubyist"
