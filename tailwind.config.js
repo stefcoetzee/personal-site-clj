@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.clj"],
+  content: ["./src/**/*.clj", "./content/posts/**.md"],
   theme: {
     extend: {
       fontFamily: {
@@ -57,10 +57,10 @@ module.exports = {
         xl: {
           css: {
             code: {
-              fontSize: "0.875rem !important", // more aggressive reduction
+              fontSize: "0.875rem !important",
             },
             pre: {
-              fontSize: "0.875rem !important", // also reduce code block size
+              fontSize: "0.875rem !important", // code block size
             },
           },
         },

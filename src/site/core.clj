@@ -53,9 +53,13 @@
                                      :footnotes? true
                                      :code-style #(str "class=\"language-" % "\""))]
         {:metadata  (assoc (into {} (for [[k v] metadata]
-                                      [k (first v)]))
+                                      [k (if (coll? v) (first v) v)]))
                            :published (str/join "-" [year month day]))
          :html-body (anchorize-headers html)}))))
+
+(comment
+  (:metadata (parse-post (last (fs/list-dir posts-dir))))
+  :rcf)
 
 (defn parse-posts
   "Return post data, parsed from files in `dir`."

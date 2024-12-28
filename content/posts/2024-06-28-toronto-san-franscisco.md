@@ -1,6 +1,8 @@
+---
 title: TO & SF
 description: An outsider's perspective
 slug: to-and-sf
+---
 
 # Toronto vs. San Francisco
 

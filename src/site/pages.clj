@@ -147,6 +147,7 @@
            (c/format-date (:published metadata))]]))]]))
 
 ;; Next: consider styling post titles similar to site menu links.
+;; Also: link styling within Tailwind Prose.
 
 (def books
   [{:title "The Well-Grounded Rubyist"
