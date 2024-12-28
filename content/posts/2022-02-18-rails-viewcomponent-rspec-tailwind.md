@@ -22,14 +22,6 @@ The end result is available on the `main` branch.
 To restore the repo to its pre-ViewComponent state,
 check out the `start-here` branch.
 
-Quick aside: You can easily generate a new Rails 7 app with
-[rails-new.stefcoetzee.com](https://rails-new.stefcoetzee.com).
-My go-to these days:
-
-```bash
-rails new --database=postgresql --skip-test --css=tailwind
-```
-
 The example app we’re gonna run with allows for the creation of team rosters
 listing players,
 each with their respective positions and jersey numbers.

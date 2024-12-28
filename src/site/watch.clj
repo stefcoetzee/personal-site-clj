@@ -32,12 +32,12 @@
   :rcf)
 
 
-(defn reload-fn [event]
-  (reload-namespaces "src/site")
-  (site.core/build!)
-  (server/restart!)
-  (server/broadcast "reload")
-  (prn event))
+#_(defn reload-fn [event]
+    (reload-namespaces "src/site")
+    (site.core/build!)
+    (server/restart!)
+    (server/broadcast "reload")
+    (prn event))
 
 
 (defn reload-fn2 [event]
@@ -47,19 +47,19 @@
   (server/broadcast "reload")
   (prn event))
 
-(defn start! []
-  (site.core/build!)
-  (fw/watch "content"
-            reload-fn
-            {:delay-ms  100
-             :recursive true})
-  (fw/watch "src"
-            reload-fn
-            {:delay-ms  100
-             :recursive true})
-  (server/start!)
-  (server/dev-start!)
-  (println "Watching..."))
+#_(defn start! []
+    (site.core/build!)
+    (fw/watch "content"
+              reload-fn
+              {:delay-ms  100
+               :recursive true})
+    (fw/watch "src"
+              reload-fn
+              {:delay-ms  100
+               :recursive true})
+    (server/start!)
+    (server/dev-start!)
+    (println "Watching..."))
 
 (defn start2! []
   (site.core/build2!)
@@ -67,10 +67,10 @@
             reload-fn2
             {:delay-ms  50
              :recursive true})
-  #_(fw/watch "content"
-              reload-fn
-              {:delay-ms  50
-               :recursive true})
+  (fw/watch "content"
+            reload-fn2
+            {:delay-ms  50
+             :recursive true})
   (server/start!)
   (server/dev-start!)
   (println "Watching..."))

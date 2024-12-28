@@ -9,11 +9,11 @@
                      :task     (site.server/start!)}
          dev        {:doc  "Run in dev mode: site generation and Tailwind CSS watch"
                      :task (run '-dev {:parallel true})}
-         -dev       {:depends [dev:tw dev:watch]}
-         dev:watch  {:doc      "Serve and rebuild on change"
-                     :requires ([site.watch])
-                     :task     (do (site.watch/start!)
-                                   (deref (promise)))}
+         #_#_-dev       {:depends [dev:tw dev:watch]}
+         #_#_dev:watch  {:doc      "Serve and rebuild on change"
+                         :requires ([site.watch])
+                         :task     (do (site.watch/start!)
+                                       (deref (promise)))}
          dev:watch2 {:doc      "Serve and rebuild on change"
                      :requires ([site.watch])
                      :task     (do (site.watch/start2!)
