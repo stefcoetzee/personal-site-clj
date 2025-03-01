@@ -280,7 +280,7 @@
        "Contributions range from control system design to PLC and HMI software development."]
 
       [:p
-       "Gaining introductory functional safety experience."]]]
+       "Gaining functional safety experience."]]]
 
     [:div {:class "flex flex-col space-y-3"}
      [:h3 {:class "font-bold text-xl"}
@@ -301,7 +301,7 @@
 
       [:p
        "Key contributions include software systems design and development for 
-        reliable and efficient data processing."]
+        reliable and efficient data processing, and business management."]
 
       [:p
        "Software tools and technologies used: 
