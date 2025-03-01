@@ -145,7 +145,7 @@
   (clean! pub-dir)
   (copy-assets (str assets-dir "/js")
                (str pub-dir "/assets/js"))
-  (shell "npx tailwindcss -i ./src/css/tailwind.css -o ./content/assets/css/main.css")
+  #_(shell "npx @tailwindcss/cli -i ./src/css/tailwind.css -o ./content/assets/css/main.css")
   (copy-assets (str assets-dir "/css")
                (str pub-dir "/assets/css"))
   (render-pages)

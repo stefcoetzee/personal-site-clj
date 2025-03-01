@@ -9,11 +9,11 @@
                      :task     (site.server/start!)}
          dev        {:doc  "Run in dev mode: site generation and Tailwind CSS watch"
                      :task (run '-dev {:parallel true})}
-         #_#_-dev       {:depends [dev:tw dev:watch]}
-         #_#_dev:watch  {:doc      "Serve and rebuild on change"
-                         :requires ([site.watch])
-                         :task     (do (site.watch/start!)
-                                       (deref (promise)))}
+         -dev       {:depends [dev:tw dev:watch2]}
+         dev:watch  {:doc      "Serve and rebuild on change"
+                     :requires ([site.watch])
+                     :task     (do (site.watch/start!)
+                                   (deref (promise)))}
          dev:watch2 {:doc      "Serve and rebuild on change"
                      :requires ([site.watch])
                      :task     (do (site.watch/start2!)
@@ -22,5 +22,7 @@
                      :task (do (shell "npm run dev"))}
          build:site {:doc      "Generate static site"
                      :requires ([site.core])
-                     :task     (site.core/build!)}}}
+                     :task     (do (site.core/build2!)
+                                   (shell "npx @tailwindcss/cli -i ./src/css/tailwind.css -o ./content/assets/css/main.css")
+                                   (shell "rm ./public/assets/js/websocket.js"))}}}
  
