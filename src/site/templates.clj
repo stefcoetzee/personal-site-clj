@@ -27,11 +27,10 @@
                font-normal text-xl flex flex-col"}
 
         :children]
-       [:script {:src "/assets/js/websocket.js"}]
+       (when (= (System/getProperty "BB_ENV") "development")
+         [:script {:src "/assets/js/websocket.js"}]) ; TODO: include when not building for deployment ("production")
        [:script {:src "/assets/js/prism.js"}]]]
      children)))
-
-
 
 (defn default-page [& args]
   (let [[opts & content] (if (map? (first args))

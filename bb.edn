@@ -16,13 +16,17 @@
                                    (deref (promise)))}
          dev:watch2 {:doc      "Serve and rebuild on change"
                      :requires ([site.watch])
-                     :task     (do (site.watch/start2!)
+                     :task     (do (System/setProperty "BB_ENV" "development")
+                                   (site.watch/start2!)
                                    (deref (promise)))}
          dev:tw     {:doc  "Run Tailwind CSS watcher"
                      :task (do (shell "npm run dev"))}
          build:site {:doc      "Generate static site"
                      :requires ([site.core])
-                     :task     (do (site.core/build2!)
-                                   (shell "npx @tailwindcss/cli -i ./src/css/tailwind.css -o ./content/assets/css/main.css")
-                                   (shell "rm ./public/assets/js/websocket.js"))}}}
+                     :task     (do (System/setProperty "BB_ENV" "production")
+                                   (site.core/build2!)
+                                   (shell "npx @tailwindcss/cli -i ./src/css/tailwind.css -o ./content/assets/css/main.css"))}
+         play:system {:doc "Experiment with `System` namespace"
+                      :task (do (System/setProperty "foo" "bar")
+                                (println (System/getProperty "foo")))}}}
  
