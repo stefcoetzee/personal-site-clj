@@ -10,7 +10,7 @@
    [:div
     {:class "flex justify-center items-center h-screen"}
     [:div
-     {:class "flex flex-col space-y-2 border border-gray-900 w-fit px-6 pt-4 
+     {:class "flex flex-col space-y-2 border border-stone-300 hover:border-stone-400 transition-colors duration-300 w-fit px-6 pt-4 
               pb-6 font-serif"}
      [:span
       {:class "text-stone-900"}
@@ -37,7 +37,7 @@
    [:div
     {:class "flex flex-col space-y-3"}
     [:p
-     "Hi, I’m Stef."]
+     "Hi there! I’m Stef."]
 
     [:p
      "I see industrial progress acceleration towards an abundant future as the 
@@ -87,13 +87,16 @@
      (c/link "/blog" "blog")
      " even less often."]
 
-    [:div
+    [:p
      "This site is made with "
      (c/link "https://babashka.org/" "Babashka")
      ", a fast native Clojure scripting runtime. "
      "Site styling is done via "
      (c/link "https://tailwindcss.com/" "Tailwind CSS")
-     "."]]))
+     "."]
+
+    [:div {:class "text-stone-400"}
+     (c/last-updated-month "2024-12-04")]]))
 
 (defn now []
   (t/default-page
@@ -118,7 +121,7 @@
 
    [:div {:class "my-5"}
     "This is a "
-    (c/link "https://nownownow.com" "/now")
+    (c/link "https://nownownow.com" "/now" {:new-tab? true})
     " page."]
 
    [:div {:class "my-5 text-stone-400"}
@@ -130,20 +133,23 @@
     :current-page "blog"}
    [:div
     [:div
-     {:class "flex flex-col space-y-8"}
+     {:class "flex flex-col space-y-4"}
      (for [post posts]
        (let [metadata (:metadata post)]
-         [:div {:class "flex flex-col space-y-2 px-4 pt-4 pb-8 border border-gray-900 
-                        transition duration-300 ease-in-out transform 
-                        hover:-translate-y-1 hover:scale-105"}
+         [:div
+          {:class "flex flex-col space-y-2 px-4 pt-4 pb-8 
+                   border border-stone-300 hover:border-stone-400 transition-colors duration-500 ease-in-out transform 
+                   hover:-translate-y-1 hover:scale-105"}
           [:div {:class "font-medium"}
            [:a {:href (str "/" (:slug metadata))}
             (:title metadata)]]
           (when (contains? metadata :description)
             [:div
              (:description metadata)])
-          [:div {:class "text-stone-400 text-sm font-sans font-medium
-                         tracking-wide uppercase"}
+          [:div {:class "text-stone-400 text-sm font-serif flex items-center"}
+           [:svg {:class "w-4 h-4 mr-1.5" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
+            [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "1.5"
+                    :d "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"}]]
            (c/format-date (:published metadata))]]))]]))
 
 ;; Next: consider styling post titles similar to site menu links.

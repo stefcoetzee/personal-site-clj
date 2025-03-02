@@ -40,17 +40,17 @@
      opts
 
      [:div
-      {:class "flex flex-col lg:flex-row lg:justify-between mt-3 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24"}
+      {:class "grow flex flex-col lg:flex-row lg:justify-between mt-4 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24"}
       [:div
-       {:class "block lg:hidden my-4"}
+       {:class "block lg:hidden"}
        (com/site-menu (:current-page opts))]
 
       [:div
-       {:class "lg:mx-auto lg:px-0 lg:max-w-2xl lg:mt-10 grow"}
+       {:class "lg:mx-auto lg:px-0 lg:max-w-2xl lg:mt-10 grow mt-4"}
        content]
 
       [:div
-       {:class "hidden lg:block lg:w-64 lg:flex-none"}
+       {:class "hidden lg:flex lg:flex-col lg:items-end lg:w-64"}
        [:div
         {:class "w-fit px-6 pt-4 pb-6 font-serif sticky top-10"}
         (com/site-menu (:current-page opts))]]]
