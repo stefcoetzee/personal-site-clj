@@ -53,7 +53,7 @@
                                      :footnotes? true
                                      :code-style #(str "class=\"language-" % "\""))]
         {:metadata  (assoc (into {} (for [[k v] metadata]
-                                      [k (if (coll? v) (first v) v)]))
+                                      [k (if (coll? v) (vec v) v)]))
                            :published (str/join "-" [year month day]))
          :html-body (anchorize-headers html)}))))
 
@@ -72,7 +72,7 @@
 
 ;; Render
 
-(defn render-page [page-data]
+(defn render-page! [page-data]
   (let [out-file (fs/file (fs/path (str pub-dir "/" (:slug page-data) ".html")))]
     (spit out-file
           (h/html {:mode :html
@@ -80,8 +80,8 @@
                   "<!DOCTYPE html>"
                   (:content page-data)))))
 
-(defn render-pages []
-  (run! render-page
+(defn render-pages! []
+  (run! render-page!
         [{:slug    "index"
           :content (pages/home)}
          {:slug    "about"
@@ -99,7 +99,7 @@
   (mapv :metadata (parse-posts posts-dir))
   :rcf)
 
-(defn render-post
+(defn render-post!
   "Render post from provided `post-data`."
   [post-data]
   (let
@@ -111,14 +111,14 @@
                            "<!DOCTYPE html>"
                            (t/post (:html-body post-data))))))
 
-(defn render-posts
+(defn render-posts!
   "Render posts from provided `posts-data`."
   [posts-data]
-  (run! (fn [post-data] (render-post post-data)) posts-data))
+  (run! (fn [post-data] (render-post! post-data)) posts-data))
 
 ;; Static assets
 
-(defn copy-assets
+(defn copy-assets!
   "Copy assets in `src` directory to `dest` directory."
   [src dest]
   (fs/copy-tree src
@@ -132,22 +132,55 @@
   [dir]
   (fs/delete-tree dir))
 
+(defn generate-redirect!
+  "Generate a redirect HTML file with meta refresh tag"
+  [from-path to-slug]
+  (let [redirect-file (fs/file (fs/path (str pub-dir from-path ".html")))]
+    (io/make-parents redirect-file)
+    (spit redirect-file
+          (h/html {:mode            :html
+                   :escape-strings? false}
+                  "<!DOCTYPE html>"
+                  [:html
+                   [:head
+                    [:meta {:http-equiv "refresh"
+                            :content    (str "0;url=/" to-slug)}]
+                    [:title (str "Redirect to " to-slug)]
+                    [:link {:rel  "canonical"
+                            :href (str "/" to-slug)}]]
+                   [:body
+                    [:p "Redirecting to "
+                     [:a {:href (str "/" to-slug)}
+                      to-slug]]]]))))
+
+(defn generate-redirects!
+  "Generate redirect pages for all posts that have redirect-from metadata"
+  [posts-data]
+  (doseq
+   [post-data posts-data]
+    (when-let [redirects (seq (:redirect-from (:metadata post-data)))]
+      (let [target-slug (:slug (:metadata post-data))]
+        (doseq [redirect-path redirects]
+          (generate-redirect! redirect-path target-slug))))))
+
 (defn build! [& _args]
   (clean! pub-dir)
-  (copy-assets (str assets-dir "/js")
-               (str pub-dir "/assets/js"))
-  (copy-assets (str assets-dir "/css")
-               (str pub-dir "/assets/css"))
-  (render-pages)
-  (render-posts (parse-posts posts-dir)))
+  (copy-assets! (str assets-dir "/js")
+                (str pub-dir "/assets/js"))
+  (copy-assets! (str assets-dir "/css")
+                (str pub-dir "/assets/css"))
+  (render-pages!)
+  (render-posts! (parse-posts posts-dir)))
 
 (defn build2! [& _args]
   (clean! pub-dir)
-  (copy-assets (str assets-dir "/js")
-               (str pub-dir "/assets/js"))
+  (copy-assets! (str assets-dir "/js")
+                (str pub-dir "/assets/js"))
   (when (= (System/getProperty "BB_ENV") "production")
     (shell "rm ./public/assets/js/websocket.js"))
-  (copy-assets (str assets-dir "/css")
-               (str pub-dir "/assets/css"))
-  (render-pages)
-  (render-posts (parse-posts posts-dir)))
+  (copy-assets! (str assets-dir "/css")
+                (str pub-dir "/assets/css"))
+  (render-pages!)
+  (let [posts-data (parse-posts posts-dir)]
+    (render-posts! posts-data)
+    (generate-redirects! posts-data)))

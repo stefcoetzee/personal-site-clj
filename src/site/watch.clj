@@ -3,13 +3,10 @@
             [site.server :as server]
             [babashka.fs :as fs]))
 
-
 (require '[babashka.pods :as pods])
 (pods/load-pod 'org.babashka/fswatcher "0.0.5")
 
-
 (require '[pod.babashka.fswatcher :as fw])
-
 
 (defn reload-namespaces [dir]
   (let [clj-files (fs/glob dir "**.clj")]
@@ -22,7 +19,6 @@
         (println "Reloading namespace:" ns-name)
         (require ns-name :reload)))))
 
-
 (comment
   (let [clj-files (fs/glob "src/site" "**.clj")]
     (for [clj-file clj-files]
@@ -31,14 +27,12 @@
   (reload-namespaces "src/site")
   :rcf)
 
-
 #_(defn reload-fn [event]
     (reload-namespaces "src/site")
     (site.core/build!)
     (server/restart!)
     (server/broadcast "reload")
     (prn event))
-
 
 (defn reload-fn2 [event]
   (reload-namespaces "src/site")
@@ -65,11 +59,11 @@
   (site.core/build2!)
   (fw/watch "src"
             reload-fn2
-            {:delay-ms  50
+            {:delay-ms  100
              :recursive true})
   (fw/watch "content"
             reload-fn2
-            {:delay-ms  50
+            {:delay-ms  100
              :recursive true})
   (server/start!)
   (server/dev-start!)

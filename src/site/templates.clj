@@ -38,11 +38,22 @@
                            (cons {} args))]
     (base
      opts
-     (com/site-menu (:current-page opts))
 
      [:div
-      {:class "mt-3 px-4 sm:px-8 md:px-12 lg:mx-auto lg:px-0 lg:max-w-2xl grow"}
-      content]
+      {:class "flex flex-col lg:flex-row lg:justify-between mt-3 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24"}
+      [:div
+       {:class "block lg:hidden my-4"}
+       (com/site-menu (:current-page opts))]
+
+      [:div
+       {:class "lg:mx-auto lg:px-0 lg:max-w-2xl lg:mt-10 grow"}
+       content]
+
+      [:div
+       {:class "hidden lg:block lg:w-64 lg:flex-none"}
+       [:div
+        {:class "w-fit px-6 pt-4 pb-6 font-serif sticky top-10"}
+        (com/site-menu (:current-page opts))]]]
 
      [:footer
       {:class "pt-4 pb-8 px-4 flex-none"}
