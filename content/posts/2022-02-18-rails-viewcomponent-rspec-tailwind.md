@@ -6,6 +6,8 @@ description: Use ViewComponent in a Tailwind CSS-styled Rails app exercised with
 summary: Use ViewComponent in a Tailwind CSS-styled Rails app exercised with RSpec tests.
 ---
 
+# Simplify Rails Views Using ViewComponents with Tailwind CSS and RSpec
+
 Use ViewComponent in a Tailwind CSS-styled Rails app exercised with RSpec
 tests.
 

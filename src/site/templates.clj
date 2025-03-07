@@ -12,11 +12,13 @@
        [:meta {:charset "utf-8"}]
        [:meta {:name    "viewport"
                :content "width=device-width, initial-scale=1"}]
-       [:link {:rel "stylesheet"
+       [:link {:rel  "stylesheet"
                :href "/assets/css/main.css"}]
-       [:link {:rel "stylesheet"
+       [:link {:rel  "stylesheet"
                :href "/assets/css/fonts.css"}]
-       [:link {:rel "stylesheet"
+       [:link {:rel  "stylesheet"
+               :href "/assets/css/typography.css"}]
+       [:link {:rel  "stylesheet"
                :href "/assets/css/prism.css"}]
        [:title (if page-title
                  (str page-title " · Stef Coetzee")
@@ -68,7 +70,8 @@
   (default-page
 
    [:article
-    {:class "pt-4 prose-xl prose-h1:text-3xl prose-h2:text-2xl 
+    {:class "pt-4 custom-prose"
+     #_"pt-4 prose-xl prose-h1:text-3xl prose-h2:text-2xl 
              prose-headings:font-medium prose-ol:list-decimal"}
     content]
 

@@ -53,19 +53,21 @@ module.exports = {
           "serif",
         ],
       },
-      typography: {
-        xl: {
-          css: {
-            code: {
-              fontSize: "0.875rem !important",
-            },
-            pre: {
-              fontSize: "0.875rem !important", // code block size
-            },
-          },
-        },
-      },
+      // typography: {
+      //   xl: {
+      //     css: {
+      //       code: {
+      //         fontSize: "0.875rem !important",
+      //       },
+      //       pre: {
+      //         fontSize: "0.875rem !important", // code block size
+      //       },
+      //     },
+      //   },
+      // },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    // require("@tailwindcss/typography")
+  ],
 };
