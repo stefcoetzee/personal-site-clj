@@ -169,4 +169,18 @@
                                nav *, header *)) {
     color: rgb(234, 88, 12); /* hover:text-orange-600 */
   }
+
+  @media (max-width: 639px) {
+    & :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+      font-size: 0.75rem !important;
+    }
+    
+    & :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+      font-size: 0.75rem !important;
+      padding-top: 0.8em;
+      padding-inline-end: 1em;
+      padding-bottom: 0.8em;
+      padding-inline-start: 1em;
+    }
+  }
 }
