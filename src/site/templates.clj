@@ -13,9 +13,9 @@
        [:meta {:name    "viewport"
                :content "width=device-width, initial-scale=1"}]
        [:link {:rel  "stylesheet"
-               :href "/assets/css/main.css"}]
-       [:link {:rel  "stylesheet"
                :href "/assets/css/fonts.css"}]
+       [:link {:rel  "stylesheet"
+               :href "/assets/css/main.css"}]
        [:link {:rel  "stylesheet"
                :href "/assets/css/typography.css"}]
        [:link {:rel  "stylesheet"
