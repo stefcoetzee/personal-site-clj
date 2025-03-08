@@ -6,12 +6,10 @@ description: Rapidly go from zero to deploy with Jekyll and Tailwind CSS.
 summary: Rapidly go from zero to deploy with Jekyll and Tailwind CSS.
 image: https://i.imgur.com/0q62Vcv.png
 tags: [Jekyll, TailwindCSS]
-last-updated-on: 2022-01-06
+last-updated: 2022-01-06
 redirect-from:
   - /2021/07/28/jekyll-tailwind-starter-repo
 ---
-
-# Jekyll and Tailwind CSS with Minimal Effort
 
 Rapidly go from zero to deploy with [Jekyll](https://jekyllrb.com/) and
 [Tailwind CSS](https://tailwindcss.com/) by cloning

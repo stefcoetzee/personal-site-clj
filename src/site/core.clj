@@ -109,7 +109,7 @@
     (spit out-file (h/html {:mode :html
                             :escape-strings? false}
                            "<!DOCTYPE html>"
-                           (t/post (:html-body post-data))))))
+                           (t/post (:metadata post-data) (:html-body post-data))))))
 
 (defn render-posts!
   "Render posts from provided `posts-data`."

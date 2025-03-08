@@ -30,7 +30,7 @@
 
         :children]
        (when (= (System/getProperty "BB_ENV") "development")
-         [:script {:src "/assets/js/websocket.js"}]) ; TODO: include when not building for deployment ("production")
+         [:script {:src "/assets/js/websocket.js"}])
        [:script {:src "/assets/js/prism.js"}]]]
      children)))
 
@@ -66,17 +66,40 @@
          "Accelerate industrial progress "]
         [:span "🚀"]]]])))
 
-(defn post [content]
-  (default-page
+(defn post [& args]
+  (let [[opts & content] (if (map? (first args))
+                           args
+                           (cons {} args))]
+    (default-page
+     (assoc opts :page-title (:title opts))
 
-   [:article
-    {:class "pt-4 custom-prose"
-     #_"pt-4 prose-xl prose-h1:text-3xl prose-h2:text-2xl 
-             prose-headings:font-medium prose-ol:list-decimal"}
-    content]
+     [:h1
+      {:class "font-medium text-3xl mt-4 mb-6"}
+      (:title opts)]
 
-   [:div {:class "my-6"}
-    "Thanks for reading!"]
-   [:footer
-    (str "© " (.getYear (java.time.LocalDate/now))
-         " Stef Coetzee. All rights reserved.")]))
+     [:span
+      {:class "text-stone-400 text-md mt-6"}
+      (if (:last-updated opts)
+        "Updated: "
+        "Published: ")
+      (if (:last-updated opts)
+        (com/format-date (-> (:last-updated opts)
+                             .toInstant
+                             (.atZone (java.time.ZoneId/systemDefault))
+                             (.format (java.time.format.DateTimeFormatter/ofPattern "yyyy-MM-dd"))))
+        (com/format-date (:published opts)))]
+
+     [:article
+      {:class "my-6 custom-prose"}
+      content]
+
+     [:span
+      {:class "text-stone-400 text-md my-6"}
+      "Published: "
+      (com/format-date (:published opts))]
+
+     [:div {:class "my-6"}
+      "Thanks for reading!"]
+     [:footer
+      (str "© " (.getYear (java.time.LocalDate/now))
+           " Stef Coetzee. All rights reserved.")])))
