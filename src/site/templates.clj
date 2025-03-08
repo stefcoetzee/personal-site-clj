@@ -20,6 +20,9 @@
                :href "/assets/css/typography.css"}]
        [:link {:rel  "stylesheet"
                :href "/assets/css/prism.css"}]
+       [:link {:rel "alternate icon"
+               :type "image/png"
+               :href "/favicon.png"}]
        [:title (if page-title
                  (str page-title " · Stef Coetzee")
                  "Stef Coetzee")]]
@@ -90,7 +93,7 @@
         (com/format-date (:published opts)))]
 
      [:article
-      {:class "my-6 custom-prose"}
+      {:class "my-6 prose"}
       content]
 
      [:span

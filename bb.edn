@@ -6,15 +6,14 @@
 
  :tasks {dev        {:doc  "Run in dev mode: site generation and Tailwind CSS watch"
                      :task (run '-dev {:parallel true})}
-         -dev       {:depends [dev:tw dev:watch2]}
+         -dev       {:depends [dev:watch2 dev:tw]}
          dev:watch2 {:doc      "Serve and rebuild on change"
                      :requires ([site.watch])
                      :task     (do (System/setProperty "BB_ENV" "development")
                                    (site.watch/start2!)
                                    (deref (promise)))}
          dev:tw     {:doc  "Run Tailwind CSS watcher"
-                     :task (do (Thread/sleep 500)
-                               (shell "npm run dev"))}
+                     :task (do (Thread/sleep 1000) (shell "npm run dev"))}
          build:site {:doc      "Generate static site"
                      :requires ([site.core])
                      :task     (do (System/setProperty "BB_ENV" "production")

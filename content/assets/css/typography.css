@@ -1,4 +1,4 @@
-.custom-prose {
+.prose {
   /* prose-xl */
   font-size: 1.25rem;
   line-height: 1.8;
@@ -64,6 +64,14 @@
     margin-bottom: 1em;
   }
   
+  & :where(img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-width: var(--border-width, 1px);
+    border-style: var(--border-style, solid);
+    border-color: var(--text-gray-400, #9ca3af);
+  }
+
   & :where(picture):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     margin-top: 2em;
     margin-bottom: 2em;

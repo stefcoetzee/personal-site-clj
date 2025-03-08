@@ -37,8 +37,7 @@ You should see something similar to the following view:
 
 <figure>
   <img src="https://i.imgur.com/m52hdxZ.png"
-       alt="application root page"
-       class="border border-gray-400">
+       alt="application root page">
   <figcaption class="text-center">
     Application root page.
   </figcaption>
@@ -48,8 +47,7 @@ We can select a team to view its players:
 
 <figure>
   <img src="https://i.imgur.com/ZWkf2di.png"
-       alt="team page"
-       class="border border-gray-400">
+       alt="team page">
   <figcaption class="text-center">
     Team roster page.
   </figcaption>
@@ -60,8 +58,7 @@ which includes links that allow for editing and deletion of said player:
 
 <figure>
   <img src="https://i.imgur.com/qm1aTpC.png"
-       alt="player page"
-       class="border border-gray-400">
+       alt="player page">
   <figcaption class="text-center">
     Player details page.
   </figcaption>

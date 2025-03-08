@@ -180,6 +180,8 @@
     (shell "rm ./public/assets/js/websocket.js"))
   (copy-assets! (str assets-dir "/css")
                 (str pub-dir "/assets/css"))
+  (copy-assets! (str assets-dir "/root")
+                (str pub-dir))
   (render-pages!)
   (let [posts-data (parse-posts posts-dir)]
     (render-posts! posts-data)
