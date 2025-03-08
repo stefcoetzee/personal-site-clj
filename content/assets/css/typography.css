@@ -19,8 +19,28 @@
   & :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     margin-top: 1.6em;
     margin-bottom: 1.6em;
-    padding-inline-start: 1.0666667em;
+    padding-top: var(--spacing-4, 1rem);
+    padding-bottom: var(--spacing-4, 1rem);
+    padding-inline-start: var(--spacing-4, 1rem);
+    padding-inline-end: var(--spacing-4, 1rem);
+    background-color: var(--bg-stone-50, #fafaf9);
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: var(--text-orange-500-30, rgba(249, 115, 22, 0.3));
+    display: flex;
+    flex-direction: column;
   }
+  
+  /* Italic text inside blockquotes */
+  & :where(blockquote p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    font-style: italic;
+  }
+  
+  /* Attribution in blockquotes */
+  /* & :where(blockquote > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    margin-bottom: 0;
+    align-self: flex-end;
+  } */
   
   /* prose-h1:text-3xl */
   & :where(h1):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
@@ -97,6 +117,18 @@
     /* margin-top: 0.8em; */
     color: var(--text-gray-600);
   }
+
+  & :where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    border-width: 0;
+    border-top-width: 1px;
+    border-style: solid;
+    border-color: var(--text-gray-300, #d1d5db);
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }  
   
   & :where(kbd):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     font-size: 0.9em;
