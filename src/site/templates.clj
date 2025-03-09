@@ -106,5 +106,7 @@
      [:div {:class "my-6"}
       "Thanks for reading!"]
      [:footer
-      (str "© " (.getYear (java.time.LocalDate/now))
-           " Stef Coetzee. All rights reserved.")])))
+      {:class "flex flex-row justify-center"}
+      [:span
+       (str "© " (.getYear (java.time.LocalDate/now))
+            " Stef Coetzee. All rights reserved.")]])))
