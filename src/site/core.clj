@@ -107,13 +107,13 @@
 ;; Compile Squint
 
 (defn prep-dirs! []
-  (fs/create-dirs "public/js"))
+  (fs/create-dirs "public/assets/js"))
 
 (defn compile-squint! []
   (println "Compiling Squint CLJS files")
   (prep-dirs!)
   (try
-    (spit "public/js/hot-reload.js"
+    (spit "public/assets/js/hot-reload.js"
           (squint/compile-string (slurp "src/dev/client/hot_reload.cljs")))
     (println "Squint compilation successful")
     (catch Exception e
@@ -221,7 +221,8 @@
                 (str pub-dir "/assets/css"))
   (copy-assets! (str assets-dir "/root")
                 (str pub-dir))
-  (compile-squint!)
+  (when (= (System/getProperty "BB_ENV") "development")
+    (compile-squint!))
   (render-pages!)
   (let [posts-data (parse-posts posts-dir)]
     (render-posts! posts-data)

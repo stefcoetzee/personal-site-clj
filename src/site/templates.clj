@@ -39,7 +39,7 @@
             {:imports {"squint-cljs/core.js" "https://cdn.jsdelivr.net/npm/squint-cljs@0.4.81/src/squint/core.js"}}))])
        (when (= (System/getProperty "BB_ENV") "development")
          [:script {:type "module"
-                   :src  "/js/hot-reload.js"}])
+                   :src  "/assets/js/hot-reload.js"}])
        [:script {:src "/assets/js/prism.js"}]]]
      children)))
 
@@ -72,16 +72,7 @@
        [:span
         [:span {:class "italic"}
          "Accelerate industrial progress "]
-        [:span "🚀"]]]]
-
-     #_[:footer
-        {:class "pt-4 pb-8 px-4 flex-none"}
-        [:span
-         {:class "flex flex-row justify-center"}
-         [:span
-          [:span {:class "italic"}
-           "Accelerate industrial progress "]
-          [:span "🚀"]]]])))
+        [:span "🚀"]]]])))
 
 (defn post [& args]
   (let [[opts & content] (if (map? (first args)) args (cons {} args))]
