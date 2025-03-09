@@ -2,7 +2,6 @@
   (:require [clojure.string :as str]
             [clojure.java.io :as io]
             [babashka.fs :as fs]
-            [babashka.tasks :refer [shell]]
             [hiccup2.core :as h]
             [squint.compiler :as squint]
             [markdown.core :as md]
