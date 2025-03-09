@@ -15,10 +15,13 @@
                                   (site.watch/start!)
                                   (deref (promise)))}
          dev:tw    {:doc  "Run Tailwind CSS watcher"
-                    :task (do (Thread/sleep 1000) (shell "npm run dev"))}
+                    :task (shell "npm run dev")
+                    #_(do (Thread/sleep 1000) (shell "npm run dev"))}
          build     {:doc      "Generate static site"
                     :requires ([site.core])
                     :task     (do (System/setProperty "BB_ENV" "production")
                                   (site.core/build!)
-                                  (shell "npm run build"))}}}
+                                  (shell "npm run build"))}
+         deploy    {:doc  "Deploy to CloudFlare pages"
+                    :task (shell "npx wrangler pages deploy ./public")}}}
  
