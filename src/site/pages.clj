@@ -196,7 +196,7 @@
    {:page-title "Bookshelf"
     :current-page "bookshelf"}
 
-   [:blockquote {:class "my-5 flex flex-col bg-stone-50 px-6 py-4 border-l-4 border-orange-500/30"}
+   [:blockquote {:class "mb-5 flex flex-col bg-stone-50 px-6 py-4 border-l-4 border-orange-500/30"}
     [:span {:class "italic"}
      "A good book gets better on the second reading. 
         A great book on the third. 
