@@ -141,6 +141,8 @@
   
   & :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     font-size: 0.875rem !important;
+    white-space: pre-wrap;       /* Allow wrapping */
+    word-wrap: break-word;       /* Break long words if needed */
   }
   
   & :where(h2 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
