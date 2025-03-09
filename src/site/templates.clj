@@ -55,7 +55,8 @@
        (com/site-menu (:current-page opts))]
 
       [:div
-       {:class "lg:mx-auto lg:px-0 lg:max-w-2xl lg:mt-10 grow mt-4"}
+       {:class "lg:mx-auto lg:px-0 lg:max-w-2xl lg:mt-10 grow my-4"}
+
        content]
 
       [:div
@@ -65,13 +66,22 @@
         (com/site-menu (:current-page opts))]]]
 
      [:footer
-      {:class "pt-4 pb-8 px-4 flex-none"}
+      {:class "pt-8 pb-12 px-4 flex-none mt-8 border-t border-stone-200"}
       [:span
        {:class "flex flex-row justify-center"}
        [:span
         [:span {:class "italic"}
          "Accelerate industrial progress "]
-        [:span "🚀"]]]])))
+        [:span "🚀"]]]]
+
+     #_[:footer
+        {:class "pt-4 pb-8 px-4 flex-none"}
+        [:span
+         {:class "flex flex-row justify-center"}
+         [:span
+          [:span {:class "italic"}
+           "Accelerate industrial progress "]
+          [:span "🚀"]]]])))
 
 (defn post [& args]
   (let [[opts & content] (if (map? (first args)) args (cons {} args))]
@@ -101,13 +111,25 @@
      [:div {:class "my-6"}
       "Thanks for reading!"]
 
-     [:span
+     [:div
       {:class "text-stone-400 text-md my-6"}
       "Published: "
       (com/format-date (:published opts))]
 
-     [:footer
-      {:class "flex flex-row justify-center my-6"}
-      [:span
-       (str "© " (.getYear (java.time.LocalDate/now))
-            " Stef Coetzee. All rights reserved.")]])))
+     #_[:div
+        {:class "my-6"}
+        (str "© " (.getYear (java.time.LocalDate/now))
+             " Stef Coetzee. All rights reserved.")]
+
+     [:div {:class "flex justify-between my-8 text-lg"}
+      (when (:previous-post-slug opts)
+        [:div
+         [:span {:class "text-stone-500 mr-1"} "←"]
+         (com/link (str (:previous-post-slug opts))
+                   "Previous post")])
+
+      (when (:next-post-slug opts)
+        [:div {:class "ml-auto"}
+         (com/link (str (:next-post-slug opts))
+                   "Next post")
+         [:span {:class "text-stone-500 ml-1"} "→"]])])))

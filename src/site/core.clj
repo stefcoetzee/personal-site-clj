@@ -61,6 +61,35 @@
   (:metadata (parse-post (last (fs/list-dir posts-dir))))
   :rcf)
 
+(defn get-prev-next-post-slugs [slugs]
+  (let [slug-count    (count slugs)
+        indexed-slugs (->> slugs
+                           (map-indexed vector)
+                           (into []))]
+    (->> (for [[idx _] indexed-slugs]
+           (let [next-post-slug (case idx
+                                  0 nil
+                                  (get slugs (dec idx)))
+                 previous-post-slug     (case idx
+                                          slug-count nil
+                                          (get slugs (inc idx)))]
+             {:previous-post-slug previous-post-slug
+              :next-post-slug     next-post-slug}))
+         (into []))))
+
+(defn add-prev-next-post-slugs [posts-data]
+  (let [slugs                (mapv #(-> % :metadata :slug) posts-data)
+        prev-next-post-slugs (get-prev-next-post-slugs slugs)]
+    (->> (for [[idx pnp-slugs] (map-indexed vector prev-next-post-slugs)]
+           (let [post-data (get posts-data idx)]
+             (assoc post-data :metadata (merge (:metadata post-data)
+                                               pnp-slugs))))
+         (into []))))
+
+(comment
+  (first (add-prev-next-post-slugs (parse-posts posts-dir)))
+  :rcf)
+
 (defn parse-posts
   "Return post data, parsed from files in `dir`."
   [dir]
@@ -68,7 +97,12 @@
        (sort)
        (map parse-post)
        (reverse)
-       (into [])))
+       (into [])
+       (add-prev-next-post-slugs)))
+
+(comment
+  (mapv :metadata (parse-posts posts-dir))
+  :rcf)
 
 ;; Compile Squint
 

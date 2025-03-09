@@ -47,7 +47,7 @@
      "Learn more about what I’m doing "
      (c/link "/now" "now")
      ". "
-     "For more on what I’ve done in the past, see my "
+     "For more information, see my "
      (c/link "/resume" "resume")
      "."]
 
