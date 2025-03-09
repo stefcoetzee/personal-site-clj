@@ -66,7 +66,7 @@
         latest-change (last-modified ["src" "content"])]
     (when (> latest-change @last-build-time)
       (println "File change detected")
-      (Thread/sleep 300) ; debounce time [ms]
+      (Thread/sleep 100) ; debounce time [ms]
       (reload-namespaces "src/site")
       (reset! last-build-time current-time)
       (build!)
