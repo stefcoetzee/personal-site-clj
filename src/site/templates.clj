@@ -20,12 +20,18 @@
                :href "/assets/css/typography.css"}]
        [:link {:rel  "stylesheet"
                :href "/assets/css/prism.css"}]
-       [:link {:rel "icon"
+       [:link {:rel  "icon"
                :type "image/png"
                :href "/favicon.png"}]
        [:title (if page-title
                  (str page-title " · Stef Coetzee")
                  "Stef Coetzee")]]
+      (when (= (System/getProperty "BB_ENV") "production")
+        [:script
+         {:async       true
+          :defer       true
+          :data-domain "stefcoetzee.com"
+          :src         "https://plausible.io/js/plausible.js"}])
       [:body
        [:div
         {:class "bg-stone-100 text-stone-700 min-h-screen font-serif 
