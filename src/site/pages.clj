@@ -256,9 +256,9 @@
 
    [:div {:class "my-5"}
     "Engineer with industrial automation, electrical engineering,
-     and business software experience gained at industry-leading engineering firms. 
-     Holds bachelor’s and master’s degrees in electrical engineering. 
-     Self-starter effective at reaching goals in demanding environments."]
+     and business software experience gained at industry-leading engineering firms.
+     Self-starter effective at reaching goals in demanding environments.
+     Holds bachelor’s and master’s degrees in electrical engineering. "]
 
    [:div {:class "my-5 flex flex-col space-y-5"}
     [:h2 {:class "font-bold text-3xl"}
@@ -279,14 +279,12 @@
 
      [:div {:class "flex flex-col space-y-3"}
       [:p
-       "Working on multi-disciplinary mine-hoist projects as a member of the 
-        Mining Electrical design team."]
+       "Member of the Mining Electrical design team, 
+        working on multi-disciplinary mine-hoist projects."]
 
       [:p
-       "Contributions range from control system design to PLC and HMI software development."]
-
-      [:p
-       "Gaining functional safety experience."]]]
+       "Contributions range from control system design to PLC and HMI software development,
+        with some exposure to functional safety applied to mine-hoist machinery."]]]
 
     [:div {:class "flex flex-col space-y-3"}
      [:h3 {:class "font-bold text-xl"}
