@@ -6,19 +6,19 @@
          squint/squint             {:git/url "https://github.com/squint-cljs/squint"
                                     :git/sha "c86d83bd3741a710e2f80fecd413801ddd456e64"}}
 
- :tasks {dev        {:doc  "Run in dev mode: site generation and Tailwind CSS watch"
-                     :task (run '-dev {:parallel true})}
-         -dev       {:depends [dev:watch dev:tw]}
+ :tasks {dev       {:doc  "Run in dev mode: site generation and Tailwind CSS watch"
+                    :task (run '-dev {:parallel true})}
+         -dev      {:depends [dev:watch dev:tw]}
          dev:watch {:doc      "Serve and build on file save"
                     :requires ([site.watch])
                     :task     (do (System/setProperty "BB_ENV" "development")
                                   (site.watch/start!)
                                   (deref (promise)))}
-         dev:tw     {:doc  "Run Tailwind CSS watcher"
-                     :task (do (Thread/sleep 1000) (shell "npm run dev"))}
-         build:site {:doc      "Generate static site"
-                     :requires ([site.core])
-                     :task     (do (System/setProperty "BB_ENV" "production")
-                                   (site.core/build!)
-                                   (shell "npm run build"))}}}
+         dev:tw    {:doc  "Run Tailwind CSS watcher"
+                    :task (do (Thread/sleep 1000) (shell "npm run dev"))}
+         build     {:doc      "Generate static site"
+                    :requires ([site.core])
+                    :task     (do (System/setProperty "BB_ENV" "production")
+                                  (site.core/build!)
+                                  (shell "npm run build"))}}}
  
