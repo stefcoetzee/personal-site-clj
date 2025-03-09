@@ -44,13 +44,17 @@
       central focus of my professional life."]
 
     [:p
-     "I was born and raised in South Africa and studied electrical and electronic 
-      engineering at Stellenbosch University."]
-
-    [:p
      "Learn more about what I’m doing "
      (c/link "/now" "now")
      "."]
+
+    [:p
+     "If, like me, you enjoy discovering books by seeing what others have read,
+      take a look at my "
+     (c/link "/bookshelf" "bookshelf")
+     ". I write infrequently and post on my "
+     (c/link "/blog" "blog")
+     " even less often."]
 
     [:p
      "Email: "
@@ -80,14 +84,6 @@
         "."]]]]
 
     [:p
-     "If, like me, you enjoy discovering books by seeing what others have read, 
-      take a look at my "
-     (c/link "/bookshelf" "bookshelf")
-     ". I write infrequently and post on my "
-     (c/link "/blog" "blog")
-     " even less often."]
-
-    [:p
      "This site is made with "
      (c/link "https://babashka.org/" "Babashka")
      ", a fast native Clojure scripting runtime. "
@@ -96,7 +92,7 @@
      "."]
 
     [:div {:class "text-stone-400"}
-     (c/last-updated-month "2024-12-04")]]))
+     (c/last-updated-month "2024-03-08")]]))
 
 (defn now []
   (t/default-page
@@ -117,7 +113,7 @@
      (c/link "/about" "abundant future")
      " inevitably implies. "
      "My day-to-day work entails a blend of industrial automation and electrical 
-      engineering design."]]
+      engineering design, with some exposure functional safety as well."]]
 
    [:div {:class "my-5"}
     "This is a "
@@ -125,7 +121,7 @@
     " page."]
 
    [:div {:class "my-5 text-stone-400"}
-    (c/last-updated-month "2024-12-04")]))
+    (c/last-updated-month "2024-03-08")]))
 
 (defn blog [posts]
   (t/default-page

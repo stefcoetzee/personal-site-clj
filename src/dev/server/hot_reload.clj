@@ -62,9 +62,8 @@
 (def last-build-time (atom 0))
 
 (defn rebuild-if-needed! []
-  (let [src-dir "src"
-        current-time (System/currentTimeMillis)
-        latest-change (last-modified src-dir)]
+  (let [current-time (System/currentTimeMillis)
+        latest-change (last-modified ["src" "content"])]
     (when (> latest-change @last-build-time)
       (println "File change detected")
       (Thread/sleep 300) ; debounce time [ms]

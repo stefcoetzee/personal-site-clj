@@ -6,7 +6,7 @@ description: Rapidly go from zero to deploy with Jekyll and Tailwind CSS.
 summary: Rapidly go from zero to deploy with Jekyll and Tailwind CSS.
 image: https://i.imgur.com/0q62Vcv.png
 tags: [Jekyll, TailwindCSS]
-last-updated: 2022-01-06
+last-updated: 2025-03-08
 redirect-from:
   - /2021/07/28/jekyll-tailwind-starter-repo
 ---
@@ -30,6 +30,10 @@ Call me old fashioned, but I still like good ol’ Jekyll.
 in 2021, FWIW.)
 To install Jekyll, follow the appropriate instructions for your operating system
 [here](https://jekyllrb.com/docs/installation/).
+
+<em>March 2025 update: In the intervening years, I’ve become much more interested
+in functional programming, Lisp, and Clojure in particular.
+This site is now built with [Babashka](https://babashka.org/), a Clojure dialect.</em>
 
 ## A Design System for Recovering Perfectionists
 
@@ -69,7 +73,7 @@ This didn’t work with Jekyll until [September 2021](https://github.com/mhanber
 <del>To enable JIT, add the following [configuration](https://tailwindcss.com/docs/just-in-time-mode#enabling-jit-mode)
 to `tailwind.config.js`:</del>
 
-[Irrelevant code block removed.]
+_Irrelevant code block removed._
 
 JIT is [enabled by default in Tailwind CSS v3](https://tailwindcss.com/blog/tailwindcss-v3#just-in-time-all-the-time).
 
