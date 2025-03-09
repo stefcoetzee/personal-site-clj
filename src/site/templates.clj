@@ -1,10 +1,10 @@
 (ns site.templates
-  (:require [site.components :as com]))
+  (:require [hiccup2.core :as h]
+            [cheshire.core :as json]
+            [site.components :as com]))
 
 (defn base [& args]
-  (let [[{:keys [page-title]} & children] (if (map? (first args))
-                                            args
-                                            (cons {} args))]
+  (let [[{:keys [page-title]} & children] (if (map? (first args)) args (cons {} args))]
     (com/insert-children
      [:html
       {:lang "en"}
@@ -30,17 +30,21 @@
        [:div
         {:class "bg-stone-100 text-stone-700 min-h-screen font-serif 
                font-normal text-xl flex flex-col"}
-
         :children]
        (when (= (System/getProperty "BB_ENV") "development")
-         [:script {:src "/assets/js/websocket.js"}])
+         [:script
+          {:type "importmap"}
+          (h/raw
+           (json/generate-string
+            {:imports {"squint-cljs/core.js" "https://cdn.jsdelivr.net/npm/squint-cljs@0.4.81/src/squint/core.js"}}))])
+       (when (= (System/getProperty "BB_ENV") "development")
+         [:script {:type "module"
+                   :src  "/js/hot-reload.js"}])
        [:script {:src "/assets/js/prism.js"}]]]
      children)))
 
 (defn default-page [& args]
-  (let [[opts & content] (if (map? (first args))
-                           args
-                           (cons {} args))]
+  (let [[opts & content] (if (map? (first args)) args (cons {} args))]
     (base
      opts
 
@@ -70,9 +74,7 @@
         [:span "🚀"]]]])))
 
 (defn post [& args]
-  (let [[opts & content] (if (map? (first args))
-                           args
-                           (cons {} args))]
+  (let [[opts & content] (if (map? (first args)) args (cons {} args))]
     (default-page
      (assoc opts :page-title (:title opts))
 

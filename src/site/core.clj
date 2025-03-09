@@ -4,6 +4,7 @@
             [babashka.fs :as fs]
             [babashka.tasks :refer [shell]]
             [hiccup2.core :as h]
+            [squint.compiler :as squint]
             [markdown.core :as md]
             [site.templates :as t]
             [site.pages :as pages]))
@@ -69,6 +70,22 @@
        (map parse-post)
        (reverse)
        (into [])))
+
+;; Compile Squint
+
+(defn prep-dirs! []
+  (fs/create-dirs "public/js"))
+
+(defn compile-squint! []
+  (println "Compiling Squint CLJS files")
+  (prep-dirs!)
+  (try
+    (spit "public/js/hot-reload.js"
+          (squint/compile-string (slurp "src/dev/client/hot_reload.cljs")))
+    (println "Squint compilation successful")
+    (catch Exception e
+      (println "Error encountered attempting to compile Squint: "
+               (.getMessage e)))))
 
 ;; Render
 
@@ -169,19 +186,9 @@
                 (str pub-dir "/assets/js"))
   (copy-assets! (str assets-dir "/css")
                 (str pub-dir "/assets/css"))
-  (render-pages!)
-  (render-posts! (parse-posts posts-dir)))
-
-(defn build2! [& _args]
-  (clean! pub-dir)
-  (copy-assets! (str assets-dir "/js")
-                (str pub-dir "/assets/js"))
-  (when (= (System/getProperty "BB_ENV") "production")
-    (shell "rm ./public/assets/js/websocket.js"))
-  (copy-assets! (str assets-dir "/css")
-                (str pub-dir "/assets/css"))
   (copy-assets! (str assets-dir "/root")
                 (str pub-dir))
+  (compile-squint!)
   (render-pages!)
   (let [posts-data (parse-posts posts-dir)]
     (render-posts! posts-data)

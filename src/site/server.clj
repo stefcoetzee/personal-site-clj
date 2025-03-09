@@ -5,11 +5,7 @@
             [org.httpkit.server :as s]
             [site.core :refer [pub-dir]]))
 
-(defonce server (atom nil))
-
-(defonce dev-server (atom nil))
-
-(defonce connected-clients (atom #{}))
+(defonce static-server (atom nil))
 
 (defn content-type [path]
   (let [ext (fs/extension path)]
@@ -19,10 +15,10 @@
       "css" "text/css"
       "text/html")))
 
-(defn site [req]
+(defn static-handler [req]
   (let [uri      (:uri req)
         ext      (fs/extension uri)
-        dir?     
+        dir?
         (fs/directory? (fs/path pub-dir (str/replace-first uri "/" "")))
         resource
         (fs/path pub-dir (str (str/replace-first uri "/" "")
@@ -38,41 +34,21 @@
        :headers {"Content-Type" "text/plain"}
        :body    "Not found"})))
 
-(defn start! [& [port & _args]]
+(defn static-start! [& [port & _args]]
   (let [port (or port 5000)]
-    (reset! server (s/run-server #'site {:port port}))
+    (reset! static-server (s/run-server #'static-handler {:port port}))
     (println (str "Static-site server listening on http://localhost:" port))))
 
-(defn stop! []
-  (when-not (nil? @server)
-    (@server :timeout 100)
-    (reset! server nil)))
+(defn static-stop! []
+  (when-not (nil? @static-server)
+    (@static-server :timeout 100)
+    (reset! static-server nil)))
 
-(defn restart! []
-  (stop!)
-  (start!))
+(defn static-restart! []
+  (static-stop!)
+  (static-start!))
 
 (comment
-  (start!)
-  (stop!)
+  (static-start!)
+  (static-stop!)
   :rcf)
-
-(defn dev-handler [req]
-  (s/as-channel
-   req
-   {:on-receive (fn [ch _msg] (swap! connected-clients conj ch))
-    :on-open    (fn [ch] (swap! connected-clients conj ch))
-    :on-close   (fn [ch _status-code] (swap! connected-clients disj ch))}))
-
-(defn dev-start! []
-  (reset! dev-server (s/run-server #'dev-handler {:port 5001}))
-  (println "Dev server listening on http://localhost:5001"))
-
-(defn dev-stop! []
-  (when-not (nil? @dev-server)
-    (@dev-server :timeout 100)
-    (reset! @dev-server nil)))
-
-(defn broadcast [msg]
-  (doseq [ch @connected-clients]
-    (s/send! ch msg)))
