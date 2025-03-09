@@ -149,7 +149,9 @@
            (c/format-date (:published metadata))]]))]]))
 
 (def books
-  [{:title "The Promise of Artificial Intelligence: Reckoning and Judgment"
+  [{:title "Boom: Bubbles and the End of Stagnation"
+    :authors ["Byrne Hobart" "Tobias Huber"]}
+   {:title "The Promise of Artificial Intelligence: Reckoning and Judgment"
     :authors ["Brian Cantwell Smith"]}
    {:title "The Well-Grounded Rubyist"
     :meta {:edition "3rd"}
