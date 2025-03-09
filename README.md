@@ -1,4 +1,4 @@
-# Clojure static site generator experiment
+# Clojure-generated (static) personal site
 
 Start static-site and development servers, and Tailwind CSS watch process:
 

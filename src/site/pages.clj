@@ -149,7 +149,9 @@
            (c/format-date (:published metadata))]]))]]))
 
 (def books
-  [{:title "The Well-Grounded Rubyist"
+  [{:title "The Promise of Artificial Intelligence: Reckoning and Judgment"
+    :authors ["Brian Cantwell Smith"]}
+   {:title "The Well-Grounded Rubyist"
     :meta {:edition "3rd"}
     :authors ["David A. Black"
               "Joseph Leo III"]}
