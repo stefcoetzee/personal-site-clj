@@ -20,7 +20,7 @@
                :href "/assets/css/typography.css"}]
        [:link {:rel  "stylesheet"
                :href "/assets/css/prism.css"}]
-       [:link {:rel "alternate icon"
+       [:link {:rel "icon"
                :type "image/png"
                :href "/favicon.png"}]
        [:title (if page-title
