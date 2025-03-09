@@ -10,9 +10,9 @@
                     :task (run '-dev {:parallel true})}
          -dev      {:depends [dev:watch dev:tw]}
          dev:watch {:doc      "Serve and build on file save"
-                    :requires ([site.watch])
+                    :requires ([dev.server.watch])
                     :task     (do (System/setProperty "BB_ENV" "development")
-                                  (site.watch/start!)
+                                  (dev.server.watch/start!)
                                   (deref (promise)))}
          dev:tw    {:doc  "Run Tailwind CSS watcher"
                     :task (shell "npm run dev")

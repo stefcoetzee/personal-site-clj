@@ -98,15 +98,16 @@
       {:class "my-6 prose"}
       content]
 
+     [:div {:class "my-6"}
+      "Thanks for reading!"]
+
      [:span
       {:class "text-stone-400 text-md my-6"}
       "Published: "
       (com/format-date (:published opts))]
 
-     [:div {:class "my-6"}
-      "Thanks for reading!"]
      [:footer
-      {:class "flex flex-row justify-center"}
+      {:class "flex flex-row justify-center my-6"}
       [:span
        (str "© " (.getYear (java.time.LocalDate/now))
             " Stef Coetzee. All rights reserved.")]])))

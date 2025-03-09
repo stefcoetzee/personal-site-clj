@@ -1,7 +1,7 @@
 (ns dev.server.hot-reload
   (:require [babashka.fs :as fs]
             [org.httpkit.server :as s]
-            [site.server :refer [static-restart!]]
+            [dev.server.static :refer [static-restart!]]
             [site.core :refer [build!]]))
 
 ;; Hot reload (CLJ)
