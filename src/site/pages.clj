@@ -120,7 +120,7 @@
 
    [:div {:class "my-5"}
     "This is a "
-    (c/link "https://nownownow.com" "/now" {:new-tab? true})
+    (c/link "https://nownownow.com" "/now" {:new-tab? true :ext-class "font-sans text-base"})
     " page."]
 
    [:div {:class "my-5 text-stone-400"}
@@ -283,8 +283,10 @@
         working on multi-disciplinary mine-hoist projects."]
 
       [:p
-       "Contributions range from control system design to PLC and HMI software development,
-        with some exposure to functional safety applied to mine-hoist machinery."]]]
+       "Responsibilities range from control system design to PLC and HMI software 
+        development,
+        as well as the application of functional safety principles and procedures 
+        to mine-hoist machinery."]]]
 
     [:div {:class "flex flex-col space-y-3"}
      [:h3 {:class "font-bold text-xl"}

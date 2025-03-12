@@ -113,12 +113,7 @@
       "Published: "
       (com/format-date (:published opts))]
 
-     #_[:div
-        {:class "my-6"}
-        (str "© " (.getYear (java.time.LocalDate/now))
-             " Stef Coetzee. All rights reserved.")]
-
-     [:div {:class "flex justify-between my-8 text-lg"}
+     [:div {:class "flex justify-between my-8 text-lg border-t border-b border-stone-200 pt-4 pb-6"}
       (when (:previous-post-slug opts)
         [:div
          [:span {:class "text-stone-500 mr-1"} "←"]
