@@ -152,43 +152,46 @@
            (c/format-date (:published metadata))]]))]]))
 
 (def books
-  [{:title "The Promise of Artificial Intelligence: Reckoning and Judgment"
+  [{:title   "The Promise of Artificial Intelligence: Reckoning and Judgment"
     :authors ["Brian Cantwell Smith"]}
-   {:title "Boom: Bubbles and the End of Stagnation"
+   {:title   "Boom: Bubbles and the End of Stagnation"
     :authors ["Byrne Hobart" "Tobias Huber"]}
-   {:title "The Well-Grounded Rubyist"
-    :meta {:edition "3rd"}
+   {:title   "Essential TypeScript 5"
+    :meta    {:edition "3rd"}
+    :authors ["Adam Freeman"]}
+   {:title   "The Well-Grounded Rubyist"
+    :meta    {:edition "3rd"}
     :authors ["David A. Black"
               "Joseph Leo III"]}
-   {:title "Good Profit"
+   {:title   "Good Profit"
     :authors ["Charles Koch"]}
-   {:title "Good Strategy, Bad Strategy"
+   {:title   "Good Strategy, Bad Strategy"
     :authors ["Richard Rumelt"]}
-   {:title "Conspiracy: Peter Thiel, Hulk Hogan, Gawker, and the Anatomy of Intrigue"
+   {:title   "Conspiracy: Peter Thiel, Hulk Hogan, Gawker, and the Anatomy of Intrigue"
     :authors ["Ryan Holiday"]}
-   {:title "The Richest Man in Babylon"
+   {:title   "The Richest Man in Babylon"
     :authors ["George S. Clason"]}
-   {:title "Hillbilly Elegy"
+   {:title   "Hillbilly Elegy"
     :authors ["J.D. Vance"]}
-   {:title "En toe fire hulle my"
-    :meta {:translated-title "And then they fired me"}
+   {:title   "En toe fire hulle my"
+    :meta    {:translated-title "And then they fired me"}
     :authors ["Jannie Mouton"]}
-   {:title "Anton Rupert: ’n Lewensverhaal"
+   {:title   "Anton Rupert: ’n Lewensverhaal"
     :authors ["Ebbe Dommisse"]}
-   {:title "The Catcher in the Rye"
+   {:title   "The Catcher in the Rye"
     :authors ["J.D. Salinger"]}
-   {:title "Die Afrikaners"
-    :meta {:translated-title "The Afrikaners"}
+   {:title   "Die Afrikaners"
+    :meta    {:translated-title "The Afrikaners"}
     :authors ["Hermann Giliomee"]}
-   {:title "’n Tydreisigersgids vir Suid-Afrika in 2030"
-    :meta {:translated-title "A Time Traveller’s Guide to South Africa in 2030"}
+   {:title   "’n Tydreisigersgids vir Suid-Afrika in 2030"
+    :meta    {:translated-title "A Time Traveller’s Guide to South Africa in 2030"}
     :authors ["Frans Cronjé"]}
-   {:title "The Lessons of History"
+   {:title   "The Lessons of History"
     :authors ["Will Durant"
               "Ariel Durant"]}
-   {:title "The Seven Habits of Highly Effective People"
+   {:title   "The Seven Habits of Highly Effective People"
     :authors ["Stephen R. Covey"]}
-   {:title "Benjamin Franklik: An American Life"
+   {:title   "Benjamin Franklik: An American Life"
     :authors ["Walter Isaacson"]}])
 
 (defn bookshelf [books]
