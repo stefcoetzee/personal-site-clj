@@ -116,7 +116,7 @@
      (c/link "/about" "abundant future")
      " inevitably implies. "
      "My day-to-day work entails a blend of industrial automation and electrical 
-      engineering design, with some exposure functional safety as well."]]
+      engineering design, with some exposure to functional safety as well."]]
 
    [:div {:class "my-5"}
     "This is a "
