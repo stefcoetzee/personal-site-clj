@@ -152,7 +152,9 @@
            (c/format-date (:published metadata))]]))]]))
 
 (def books
-  [{:title   "The Promise of Artificial Intelligence: Reckoning and Judgment"
+  [{:title "Antimemetics: Why Some Ideas Resist Spreading"
+    :authors ["Nadia Asparouhova"]}
+   {:title   "The Promise of Artificial Intelligence: Reckoning and Judgment"
     :authors ["Brian Cantwell Smith"]}
    {:title   "Boom: Bubbles and the End of Stagnation"
     :authors ["Byrne Hobart" "Tobias Huber"]}
