@@ -152,7 +152,10 @@
            (c/format-date (:published metadata))]]))]]))
 
 (def books
-  [{:title "Antimemetics: Why Some Ideas Resist Spreading"
+  [{:title "The Joy of Clojure"
+    :meta {:edition "2nd"}
+    :authors ["Michael Fogus" "Chris Houser"]}
+   {:title "Antimemetics: Why Some Ideas Resist Spreading"
     :authors ["Nadia Asparouhova"]}
    {:title   "The Promise of Artificial Intelligence: Reckoning and Judgment"
     :authors ["Brian Cantwell Smith"]}
