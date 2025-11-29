@@ -94,7 +94,7 @@
      (c/link "https://tailwindcss.com/" "Tailwind CSS")
      "."]
 
-    [:div {:class "text-stone-400"}
+    [:div {:class "text-stone-400 italic"}
      (c/last-updated-month "2024-03-08")]]))
 
 (defn now []
@@ -123,7 +123,7 @@
     (c/link "https://nownownow.com" "/now" {:new-tab? true :ext-class "font-sans text-base"})
     " page."]
 
-   [:div {:class "my-5 text-stone-400"}
+   [:div {:class "my-5 text-stone-400 italic"}
     (c/last-updated-month "2024-03-08")]))
 
 (defn blog [posts]
@@ -137,8 +137,9 @@
        (let [metadata (:metadata post)]
          [:div
           {:class "flex flex-col space-y-2 px-4 pt-4 pb-8 
-                   border border-stone-300 hover:border-stone-400 transition-colors duration-500 ease-in-out transform 
-                   hover:-translate-y-1 hover:scale-105"}
+                   border border-stone-300 hover:border-stone-400 
+                   transition-all duration-150 ease-out 
+                   hover:-translate-y-1 hover:scale-[1.02]"}
           [:div {:class "font-medium"}
            [:a {:href (str "/" (:slug metadata))}
             (:title metadata)]]
@@ -149,13 +150,16 @@
            [:svg {:class "w-4 h-4 mr-1.5" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
             [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "1.5"
                     :d "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"}]]
-           (c/format-date (:published metadata))]]))]]))
+           [:span {:class "_tracking-wider"}
+            (c/format-date (:published metadata))]]]))]]))
 
 (def books
-  [{:title "The Joy of Clojure"
-    :meta {:edition "2nd"}
+  [{:title   "The Origins of Efficiency"
+    :authors ["Brian Potter"]}
+   {:title   "The Joy of Clojure"
+    :meta    {:edition "2nd"}
     :authors ["Michael Fogus" "Chris Houser"]}
-   {:title "Antimemetics: Why Some Ideas Resist Spreading"
+   {:title   "Antimemetics: Why Some Ideas Resist Spreading"
     :authors ["Nadia Asparouhova"]}
    {:title   "The Promise of Artificial Intelligence: Reckoning and Judgment"
     :authors ["Brian Cantwell Smith"]}
@@ -458,5 +462,5 @@
       [:p
        "GPA: 3.3 / 4.0"]]]]
 
-   [:div {:class "my-5 text-stone-400"}
+   [:div {:class "my-5 text-stone-400 italic"}
     (c/last-updated-month "2024-12-04")]))

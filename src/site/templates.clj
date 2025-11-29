@@ -90,7 +90,7 @@
       (:title opts)]
 
      [:span
-      {:class "text-stone-400 text-md mt-6"}
+      {:class "text-stone-400 text-md mt-6 italic"}
       (if (:last-updated opts)
         "Updated: "
         "Published: ")
@@ -109,7 +109,7 @@
       "Thanks for reading!"]
 
      [:div
-      {:class "text-stone-400 text-md my-6"}
+      {:class "text-stone-400 text-md my-6 italic"}
       "Published: "
       (com/format-date (:published opts))]
 
