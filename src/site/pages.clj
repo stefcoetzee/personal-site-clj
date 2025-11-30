@@ -55,9 +55,9 @@
      "If, like me, you enjoy discovering books by seeing what others have read,
       take a look at my "
      (c/link "/bookshelf" "bookshelf")
-     ". I write infrequently and post on my "
+     ". I post on my "
      (c/link "/blog" "blog")
-     " even less often."]
+     " infrequently."]
 
     [:p
      "Email: "
@@ -115,8 +115,8 @@
       in support of the increased materials supply an "
      (c/link "/about" "abundant future")
      " inevitably implies. "
-     "My day-to-day work entails a blend of industrial automation and electrical 
-      engineering design, with some exposure to functional safety as well."]]
+     "My day-to-day work entails a blend of industrial automation, electrical 
+      engineering design, and functional safety as applied to machinery."]]
 
    [:div {:class "my-5"}
     "This is a "
