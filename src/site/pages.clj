@@ -76,10 +76,10 @@
                  "stefcoetzee"])
         " on GitHub;"]
        [:li
-        (c/link "https://x.com/stef_coetzee"
+        (c/link "https://x.com/stefcoetzee"
                 [:span
                  {:class "font-sans text-base"}
-                 "stef_coetzee"])
+                 "stefcoetzee"])
         " on X;"]
        [:li
         (c/link "https://www.linkedin.com/in/stefcoetzee/"
